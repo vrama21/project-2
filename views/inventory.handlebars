@@ -8,11 +8,13 @@
     </tr>
   </thead>
   <tbody>
+    {{#each item}}
     <tr>
       <th scope="row">{{inventory.id}}</th>
       <td>{{inventory.productName}}</td>
       <td>{{inventory.currentQuanity}}</td>
       <td>{{inventory.weeklyQuanity}}</td>
     </tr>
+    {{/each}}
   </tbody>
 </table>
