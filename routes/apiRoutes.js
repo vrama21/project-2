@@ -2,7 +2,7 @@ const db = require("../models");
 
 module.exports = (app) => {
     app.get("/api/inventory", (req, res) => {
-        db.Inventory.findAll({}).then((inventory) => {
+        db.Inventory.findAll().then((inventory) => {
             res.json(inventory);
         });
     });

@@ -1,15 +1,31 @@
 const db = require("../models");
 
 module.exports = (app) => {
-    // Load index page
     app.get("/", (req, res) => {
-        db.Inventory.findAll({}).then((inventory) => {
-            res.render("index", {
-                msg: "Welcome!",
-                inventory: inventory
+        res.render("index");
+    })
+
+    app.get("/inventory", (req, res) => {
+        db.Inventory.findAll({}).then((items) => {
+            console.log(items);
+            res.render("inventory", {
+                inventory: items
             });
         });
     });
+
+    app.get("/inventory/addItem", (req, res) => {
+        res.render("inventoryForm", {
+            script: "assets/js/inventoryForm.js"
+        });
+    })
+
+    app.post("/inventory/addItem", (req, res) => {
+        db.Inventory.create(req.body).then(() => {
+            console.log(req.body);
+            res.redirect("/inventory");
+        });
+    })
 
     // Load example page and pass in an example by id
     app.get("/inventory/:id", (req, res) => {
@@ -18,7 +34,7 @@ module.exports = (app) => {
                 id: req.params.id
             }
         }).then((inventory_item) => {
-            res.render("example", {
+            res.render("inventory", {
                 inventory: inventory_item
             });
         });
