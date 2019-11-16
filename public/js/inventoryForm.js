@@ -6,12 +6,9 @@ $(document).ready(() => {
             weeklyQuantity: $("#weekly-quantity").val().trim()
         };
 
-        console.log(addItem)
+        // console.log(addItem)
 
         $.ajax({
-            headers: {
-                "Content-Type": "application/json"
-            },
             type: "POST",
             url: "inventory/addItem",
             data: addItem
