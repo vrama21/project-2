@@ -15,9 +15,7 @@ module.exports = (app) => {
     });
 
     app.get("/inventory/addItem", (req, res) => {
-        res.render("inventoryForm", {
-            script: "assets/js/inventoryForm.js"
-        });
+        res.render("inventoryForm");
     })
 
     app.post("/inventory/addItem", (req, res) => {
@@ -27,7 +25,6 @@ module.exports = (app) => {
         });
     })
 
-    // Load example page and pass in an example by id
     app.get("/inventory/:id", (req, res) => {
         db.Example.findOne({
             where: {
