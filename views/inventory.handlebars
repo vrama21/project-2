@@ -1,18 +1,24 @@
+<div class="row">
+    <i class="material-icons">add</i>
+</div>
+
 <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#ID</th>
-      <th scope="col">Product Name</th>
-      <th scope="col">Current Quanity</th>
-      <th scope="col">Quanity Needed For The Week</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">{{inventory.id}}</th>
-      <td>{{inventory.productName}}</td>
-      <td>{{inventory.currentQuanity}}</td>
-      <td>{{inventory.weeklyQuanity}}</td>
-    </tr>
-  </tbody>
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Current Quanity</th>
+            <th scope="col">Quanity Needed For The Week</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each inventory}}
+        <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{productName}}</td>
+            <td>{{currentQuanity}}</td>
+            <td>{{weeklyQuanity}}</td>
+        </tr>
+        {{/each }}
+    </tbody>
 </table>

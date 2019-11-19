@@ -2,18 +2,19 @@ $(document).ready(() => {
     $("#item-submit").on("click", () => {
         const addItem = {
             productName: $("#product-name").val().trim(),
-            currentQuantity: $("#current-quantity").val().trim(),
-            weeklyQuantity: $("#weekly-quantity").val().trim()
+            currentQuantity: parseInt($("#current-quantity").val().trim()),
+            weeklyQuantity: parseInt($("#weekly-quantity").val().trim())
         };
 
-        // console.log(addItem)
-
+        console.log(addItem);
+        
         $.ajax({
             type: "POST",
-            url: "inventory/addItem",
+            url: "/inventory/additem",
             data: addItem
         }).then(() => {
             console.log("Post Success!")
+            location.window.href = ("/inventory");
         });
     });
 });

@@ -3,11 +3,12 @@ const db = require("../models");
 module.exports = (app) => {
     app.get("/api/inventory", (req, res) => {
         db.Inventory.findAll().then((inventory) => {
-            res.json(inventory);
+            console.log(inventory);
+            res.json(inventory.dataValues);
         });
     });
 
-    app.post("/api/inventory", (req, res) => {
+    app.post("/api/inventory/additem", (req, res) => {
         db.Inventory.create(req.body).then((inventory) => {
             res.json(inventory);
         });
