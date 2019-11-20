@@ -6,30 +6,23 @@ module.exports = (app) => {
     })
 
     app.get("/inventory", (req, res) => {
-        db.Inventory.findAll({}).then((items) => {
+        db.Inventory.findAll().then((items) => {
+            console.log(typeof items);
             console.log(items);
             res.render("inventory", {
-                inventory: items
+                inventory: items,
+                scripts: [{
+                    script: "/js/inventoryFrontEnd.js"
+                }]
             });
         });
     });
 
     app.post("/inventory", (req, res) => {
-        db.Inventory.create(req.body).then((item) => {
+        db.Inventory.create(req.body).then(item => {
             res.json(item);
         });
     });
-
-// TO BE REMOVED ---------------------------------
-    app.get("/inventory/addItem", (req, res) => {
-        res.render("inventoryForm");
-    })
-
-    app.post("/inventory/addItem", (req, res) => {
-        db.Inventory.create(req.body).then((item) => {
-            res.json(item);
-        });
-    })
 
     app.get("/inventory/:id", (req, res) => {
         db.Example.findOne({

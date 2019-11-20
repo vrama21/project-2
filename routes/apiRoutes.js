@@ -1,6 +1,12 @@
 const db = require("../models");
 
 module.exports = (app) => {
+    app.post("api/inventory", (req, res) => {
+        db.Inventory.create(req.body).then(item => {
+            res.json(item);
+        });
+    });
+
     app.put("/api/inventory", (req, res) => {
         db.Inventory.update(
             req.body, {
