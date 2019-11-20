@@ -20,6 +20,7 @@ module.exports = (app) => {
 
     app.post("/inventory/addItem", (req, res) => {
         db.Inventory.create(req.body).then((item) => {
+            console.log(req.body)
             res.json(item);
         });
     })
