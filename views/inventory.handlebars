@@ -21,7 +21,7 @@
             <td>{{currentQuantity}}</td>
             <td>{{weeklyQuantity}}</td>
             <td>
-                <button id="delete-item" class="btn btn-danger">X</button>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">X</button>
             </td>
         </tr>
         {{/each}}
@@ -62,19 +62,19 @@
     </div>
 </div>
 
-<div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                ...
+                Are you sure you want to remove?
             </div>
-            <div class="modal-body">
-                ...
-            </div>
+            
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger btn-ok">Delete</a>
+                <button type="button" id="delete-button" class="btn btn-default" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><a class="btn btn-danger btn-ok">No</a></button>
+
+                
             </div>
         </div>
     </div>
