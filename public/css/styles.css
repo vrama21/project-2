@@ -1,0 +1,11 @@
+.list-group-item {
+    line-height: 2.5;
+}
+
+#add-item-modal {
+    visibility: hidden;
+}
+
+#delete-item-modal {
+    visibility: hidden;
+}

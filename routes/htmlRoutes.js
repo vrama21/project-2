@@ -1,27 +1,44 @@
-var db = require("../models");
+const db = require("../models");
 
-module.exports = function(app) {
-  // Load index page
-  app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
+module.exports = (app) => {
+    app.get("/", (req, res) => {
+        res.render("index");
+    })
+
+    app.get("/inventory", (req, res) => {
+        db.Inventory.findAll({}).then((items) => {
+            console.log(items);
+            res.render("inventory", {
+                inventory: items
+            });
+        });
     });
-  });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
-      });
+    app.get("/inventory/addItem", (req, res) => {
+        res.render("inventoryForm");
+    })
+
+    app.post("/inventory/addItem", (req, res) => {
+        db.Inventory.create(req.body).then((item) => {
+            console.log(req.body)
+            res.json(item);
+        });
+    })
+
+    app.get("/inventory/:id", (req, res) => {
+        db.Example.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then((inventory_item) => {
+            res.render("inventory", {
+                inventory: inventory_item
+            });
+        });
     });
-  });
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
-  });
+    // Render 404 page for any unmatched routes
+    app.get("*", (req, res) => {
+        res.render("404");
+    });
 };
