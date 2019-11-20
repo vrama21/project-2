@@ -21,8 +21,8 @@ $(document).ready(() => {
         $("#add-item-modal").modal("show");
     });
 
-    // $("#delete-item").on("click", () => {
-    //     $("#delete-item-modal").addClass("active");
-    // })
+    $("#delete-item").on("click", () => {
+        location.reload(true);
+    })
 });
 
