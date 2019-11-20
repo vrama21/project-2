@@ -14,13 +14,19 @@ module.exports = (app) => {
         });
     });
 
+    app.post("/inventory", (req, res) => {
+        db.Inventory.create(req.body).then((item) => {
+            res.json(item);
+        });
+    });
+
+// TO BE REMOVED ---------------------------------
     app.get("/inventory/addItem", (req, res) => {
         res.render("inventoryForm");
     })
 
     app.post("/inventory/addItem", (req, res) => {
         db.Inventory.create(req.body).then((item) => {
-            console.log(req.body)
             res.json(item);
         });
     })

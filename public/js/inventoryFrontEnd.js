@@ -20,7 +20,27 @@ $(document).ready(() => {
         $("#add-item-modal").addClass("active");
     });
 
-    $("#delete-item").on("click", () => {
-        $("#delete-item-modal").addClass("active");
-    })
+    $(".delete-item").on("click", function() {
+        const itemId = $(this).attr("data-id");
+        $.ajax({
+            method: "DELETE",
+            url: `/api/inventory/${itemId}`,
+        }).then(() => {
+            window.location.href = "/inventory";
+        });
+    });
+
+
+
+    function updatePost(post) {
+        $.ajax({
+                method: "PUT",
+                url: "/api/inventory",
+                data: post
+            })
+            .then(() => {
+                window.location.href = "/blog";
+            });
+    };
+
 });

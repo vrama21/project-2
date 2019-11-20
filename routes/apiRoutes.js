@@ -1,26 +1,25 @@
 const db = require("../models");
 
 module.exports = (app) => {
-    app.get("/api/inventory", (req, res) => {
-        db.Inventory.findAll().then((inventory) => {
-            console.log(inventory);
-            res.json(inventory.dataValues);
-        });
-    });
-
-    app.post("/api/inventory/additem", (req, res) => {
-        db.Inventory.create(req.body).then((inventory) => {
-            res.json(inventory);
+    app.put("/api/inventory", (req, res) => {
+        db.Inventory.update(
+            req.body, {
+                where: {
+                    id: req.body.id
+                }
+            }).then((inventory_item) => {
+            res.json(inventory_item);
         });
     });
 
     app.delete("/api/inventory/:id", (req, res) => {
+        console.log(req.params.id)
         db.Inventory.destroy({
             where: {
                 id: req.params.id
             }
-        }).then((inventory) => {
-            res.json(inventory);
+        }).then((inventory_item) => {
+            res.json(inventory_item);
         });
     });
 };
