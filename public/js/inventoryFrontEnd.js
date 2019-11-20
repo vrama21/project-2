@@ -12,15 +12,17 @@ $(document).ready(() => {
             data: addItem
         }).then(() => {
             console.log("Post Success!")
-            location.window.href = ("/inventory");
+            location.reload(true);
+            // location.window.href = ("localhost:3000/inventory");
         });
     });
 
     $("#add-item").on("click", () => {
-        $("#add-item-modal").addClass("active");
+        $("#add-item-modal").modal("show");
     });
 
-    $("#delete-item").on("click", () => {
-        $("#delete-item-modal").addClass("active");
-    })
+    // $("#delete-item").on("click", () => {
+    //     $("#delete-item-modal").addClass("active");
+    // })
 });
+
