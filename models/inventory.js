@@ -1,8 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
     const Inventory = sequelize.define("Inventory", {
         productName: DataTypes.STRING,
-        currentQuanity: DataTypes.INTEGER,
-        weeklyQuanity: DataTypes.INTEGER
+        currentQuantity: DataTypes.INTEGER,
+        weeklyQuantity: DataTypes.INTEGER
     });
     return Inventory;
 };
