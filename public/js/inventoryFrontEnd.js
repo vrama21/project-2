@@ -12,25 +12,27 @@ $(document).ready(() => {
             data: addItem
         }).then(() => {
             console.log("Post Success!")
-            location.window.href = ("/inventory");
+            location.reload(true);
+            // location.window.href = ("localhost:3000/inventory");
         });
     });
 
     $("#add-item").on("click", () => {
-        $("#add-item-modal").addClass("active");
+        $("#add-item-modal").modal("show");
     });
 
-    $(".delete-item").on("click", function() {
+    $(".delete-item").on("click", function () {
         const itemId = $(this).attr("data-id");
-        $.ajax({
-            method: "DELETE",
-            url: `/api/inventory/${itemId}`,
-        }).then(() => {
-            window.location.href = "/inventory";
+
+        $("#delete-item").on("click", function () {
+            $.ajax({
+                method: "DELETE",
+                url: `/api/inventory/${itemId}`,
+            }).then(() => {
+                location.reload(true);
+            });
         });
     });
-
-
 
     function updatePost(post) {
         $.ajax({
@@ -42,5 +44,15 @@ $(document).ready(() => {
                 window.location.href = "/blog";
             });
     };
+
+    function deleteItem() {
+        const itemId = $(this).attr("data-id");
+        $.ajax({
+            method: "DELETE",
+            url: `/api/inventory/${itemId}`,
+        }).then(() => {
+            location.reload(true);
+        });
+    }
 
 });

@@ -1,6 +1,7 @@
 <div class="row">
     {{!-- <i id="add-item" class="material-icons">add</i> --}}
-    <button id="add-item" class="btn btn-primary">Add Item</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Add Item</button>
+    {{!-- <button id="add-item" class="btn btn-primary">Add Item</button> --}}
 </div>
 
 <table class="table table-hover">
@@ -20,45 +21,60 @@
             <td>{{currentQuantity}}</td>
             <td>{{weeklyQuantity}}</td>
             <td>
-                <button class="delete-item btn btn-danger" data-id="{{id}}">X</button>
+                <button class="delete-item btn btn-danger" data-id={{id}} data-toggle="modal" data-target="#deleteModal">X</button>
             </td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 
-<div id="add-item-modal" class="modal" tabindex="-1" role="dialog">
+<div id="exampleModalCenter" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Add an item</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Modal body text goes here.</p>
+                <form action="POST">
+                    <div class="form-group">
+                        <label for="product-name">Product Name</label>
+                        <input type="text" class="form-control" id="product-name" placeholder="Steak">
+                    </div>
+                    <div class="form-group">
+                        <label for="current-quantity">Current Quantity</label>
+                        <input type="text" class="form-control" id="current-quantity" placeholder="3">
+                    </div>
+                    <div class="form-group">
+                        <label for="weekly-quantity">Weekly Quantity</label>
+                        <input type="text" class="form-control" id="weekly-quantity" placeholder="6">
+                    </div>
+                    <submit class="btn btn-primary" id="item-submit" data-dismiss="modal">Add Item</submit>
+                </form>
             </div>
-            <div class="modal-footer">
+            {{!-- <div class="modal-footer">
                 <button type="button" class="btn btn-primary">Save changes</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                ...
+                Are you sure you want to remove?
             </div>
-            <div class="modal-body">
-                ...
-            </div>
+            
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger btn-ok">Delete</a>
+                <button type="button" id="delete-item" class="btn btn-default" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><a class="btn btn-danger btn-ok">No</a></button>
+
+                
             </div>
         </div>
     </div>
