@@ -21,9 +21,11 @@
             <td>{{productName}}</td>
             <td>{{currentQuantity}}</td>
             <td>{{weeklyQuantity}}</td>
-            <td class="edit-button btn material-icons" data-id="{{id}}" data-toggle="modal" data-target="#edit-item-modal">edit</td>
+            <td class="edit-button btn material-icons" data-id={{id}} data-toggle="modal"
+                data-target="#edit-item-modal">edit</td>
             <td>
-                <button class="delete-item btn btn-danger" data-id="{{id}}" data-toggle="modal" data-target="#delete-item-modal">X</button>
+                <button class="delete-item btn btn-danger" data-id={{id}} data-toggle="modal"
+                    data-target="#delete-item-modal">X</button>
             </td>
         </tr>
         {{/each}}

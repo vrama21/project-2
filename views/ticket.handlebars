@@ -1,0 +1,21 @@
+<div class="row">
+    {{!-- buttons --}}
+    <div class="col-md-8">
+        {{#each inventory}}
+        <button>{{productName}}</button>
+
+        {{/each}}
+
+    </div>
+    {{!-- order table  --}}
+    <div class="col-md-4">
+        <h2>Table Order:</h2>
+        <hr>
+        <ul>
+            <li>
+                {{order}}
+            </li>
+        </ul>
+    </div>
+
+</div>
