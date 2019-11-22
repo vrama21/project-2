@@ -22,6 +22,14 @@ module.exports = (app) => {
         });
     });
 
+    app.get("/ticket", (req, res) => {
+        db.Inventory.findAll().then(items => {
+            res.render("ticket", {
+                inventory: items
+            })
+        })
+    })
+
     app.get("/inventory/:id", (req, res) => {
         db.Inventory.findOne({
             where: {
