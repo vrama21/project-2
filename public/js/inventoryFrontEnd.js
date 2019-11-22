@@ -18,7 +18,6 @@ $(document).ready(() => {
 
     $(".delete-item").on("click", function () {
         const itemId = $(this).attr("data-id");
-
         $("#delete-item").on("click", function () {
             $.ajax({
                 method: "DELETE",
@@ -29,14 +28,44 @@ $(document).ready(() => {
         });
     });
 
-    $(".edit-button").on("click", function() {
-        $.ajax({
-            method: "PUT",
-            url: "/api/inventory",
-        }).then(() => {
-            // location.reload(true);
+    $(".edit-button").on("click", function () {
+        const updateObject = {
+            itemId: $(this).attr("data-id"),
+            productNameInput: $("#product-name-update"),
+            currentQuantityInput: $("#current-quantity-update"),
+            weeklyQuantityInput: $("#weekly-quantity-update")
+        };
 
-        })
+        $.ajax({
+            method: "GET",
+            url: `api/inventory/${updateObject.itemId}`
+        }).then(inventory_item => {
+            updateObject.productNameInput.val(inventory_item.productName);
+            updateObject.currentQuantityInput.val(inventory_item.currentQuantity);
+            updateObject.weeklyQuantityInput.val(inventory_item.weeklyQuantity);
+
+            $("#item-update").on("click", function (event) {
+                event.preventDefault();
+
+                const updateItem = {
+                    productName: $("#product-name-update").val().trim(),
+                    currentQuantity: parseInt($("#current-quantity-update").val().trim()),
+                    weeklyQuantity: parseInt($("#weekly-quantity-update").val().trim())
+                };
+                
+                console.log(updateObject)
+                console.log(updateItem)
+
+                $.ajax({
+                    method: "PUT",
+                    url: `/api/inventory/${updateObject.itemId}`,
+                    data: updateItem
+                }).then(() => {
+                    location.reload(true);
+                });
+            });
+        });
+
     });
 
     // TODO: Add active class to currently selected page in navigation

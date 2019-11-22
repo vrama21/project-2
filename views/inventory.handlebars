@@ -25,6 +25,9 @@
             <td>
                 <button class="delete-item btn btn-danger" data-id={{id}} data-toggle="modal"
                     data-target="#delete-item-modal">X</button>
+            <td class="edit-button btn material-icons" data-id="{{id}}" data-toggle="modal" data-target="#edit-item-modal">edit</td>
+            <td>
+                <button class="delete-item btn btn-danger" data-id="{{id}}" data-toggle="modal" data-target="#delete-item-modal">X</button>
             </td>
         </tr>
         {{/each}}
@@ -76,9 +79,6 @@
     </div>
 </div>
 
-
-
-
 <div id="edit-item-modal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -89,7 +89,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="POST">
+                <form>
                     <div class="form-group">
                         <label for="product-name">Product Name</label>
                         <input type="text" class="form-control" id="product-name" placeholder="Steak">
@@ -103,6 +103,20 @@
                         <input type="text" class="form-control" id="weekly-quantity" placeholder="6">
                     </div>
                     <submit class="btn btn-primary" id="item-submit" data-dismiss="modal">Add Item</submit>
+                <form>
+                    <div class="form-group">
+                        <label for="product-name">Product Name</label>
+                        <input type="text" class="form-control" id="product-name-update">
+                    </div>
+                    <div class="form-group">
+                        <label for="current-quantity">Current Quantity</label>
+                        <input type="text" class="form-control" id="current-quantity-update">
+                    </div>
+                    <div class="form-group">
+                        <label for="weekly-quantity">Weekly Quantity</label>
+                        <input type="text" class="form-control" id="weekly-quantity-update">
+                    </div>
+                    <submit class="btn btn-primary" id="item-update" data-dismiss="modal">Update Item</submit>
                 </form>
             </div>
         </div>
