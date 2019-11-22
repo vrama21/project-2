@@ -1,38 +1,40 @@
 <div class="row">
-    {{!-- <i id="add-item" class="material-icons">add</i> --}}
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Add Item</button>
-    {{!-- <button id="add-item" class="btn btn-primary">Add Item</button> --}}
+    {{!-- <i id="add-item" type="button" class="btn material-icons" data-toggle="modal" data-target="#add-item-modal">add</i> --}}
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-item-modal">Add Item</button>
 </div>
 
 <table class="table table-hover">
-    <thead>
+    <thead class="text-center">
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Product Name</th>
             <th scope="col">Current Quantity</th>
             <th scope="col">Quantity Needed For The Week</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
         {{#each inventory}}
         <tr>
-            <th scope="row">{{id}}</th>
+            <td scope="row">{{id}}</th>
             <td>{{productName}}</td>
             <td>{{currentQuantity}}</td>
             <td>{{weeklyQuantity}}</td>
+            <td class="edit-button btn material-icons">edit</td>
             <td>
-                <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">X</button>
+                <button class="delete-item btn btn-danger" data-id={{id}} data-toggle="modal" data-target="#delete-item-modal">X</button>
             </td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 
-<div id="exampleModalCenter" class="modal" tabindex="-1" role="dialog">
+<div id="add-item-modal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add an item</h5>
+                <h5 class="modal-title">Add an Item</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -54,27 +56,20 @@
                     <submit class="btn btn-primary" id="item-submit" data-dismiss="modal">Add Item</submit>
                 </form>
             </div>
-            {{!-- <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div> --}}
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                Are you sure you want to remove?
+            <div class="modal-body">
+                Are you sure you want to delete this item?
             </div>
-            
             <div class="modal-footer">
-                <button type="button" id="delete-button" class="btn btn-default" data-dismiss="modal">Yes</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal"><a class="btn btn-danger btn-ok">No</a></button>
-
-                
+                <button type="button" id="delete-item" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
