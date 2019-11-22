@@ -34,7 +34,8 @@ $(document).ready(() => {
             method: "PUT",
             url: "/api/inventory",
         }).then(() => {
-            location.reload(true);
+            // location.reload(true);
+
         })
     });
 

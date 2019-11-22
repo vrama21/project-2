@@ -21,9 +21,10 @@
             <td>{{productName}}</td>
             <td>{{currentQuantity}}</td>
             <td>{{weeklyQuantity}}</td>
-            <td class="edit-button btn material-icons">edit</td>
+            <td class="edit-button btn material-icons" data-id={{id}} data-toggle="modal" data-target="#edit-item-modal">edit</td>
             <td>
-                <button class="delete-item btn btn-danger" data-id={{id}} data-toggle="modal" data-target="#delete-item-modal">X</button>
+                <button class="delete-item btn btn-danger" data-id={{id}} data-toggle="modal"
+                    data-target="#delete-item-modal">X</button>
             </td>
         </tr>
         {{/each}}
@@ -74,3 +75,37 @@
         </div>
     </div>
 </div>
+
+
+
+
+<div id="edit-item-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit an Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="POST">
+                    <div class="form-group">
+                        <label for="product-name">Product Name</label>
+                        <input type="text" class="form-control" id="product-name" placeholder="Steak">
+                    </div>
+                    <div class="form-group">
+                        <label for="current-quantity">Current Quantity</label>
+                        <input type="text" class="form-control" id="current-quantity" placeholder="3">
+                    </div>
+                    <div class="form-group">
+                        <label for="weekly-quantity">Weekly Quantity</label>
+                        <input type="text" class="form-control" id="weekly-quantity" placeholder="6">
+                    </div>
+                    <submit class="btn btn-primary" id="item-submit" data-dismiss="modal">Add Item</submit>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
