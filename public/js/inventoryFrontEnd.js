@@ -52,9 +52,6 @@ $(document).ready(() => {
                     currentQuantity: parseInt($("#current-quantity-update").val().trim()),
                     weeklyQuantity: parseInt($("#weekly-quantity-update").val().trim())
                 };
-                
-                console.log(updateObject)
-                console.log(updateItem)
 
                 $.ajax({
                     method: "PUT",
