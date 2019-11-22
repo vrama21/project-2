@@ -16,6 +16,14 @@ module.exports = (app) => {
         });
     });
 
+    app.get("/ticket", (req, res) => {
+        db.Inventory.findAll().then(items => {
+            res.render("ticket", {
+                inventory: items
+            })
+        });
+    });
+
     app.post("/inventory", (req, res) => {
         db.Inventory.create(req.body).then(item => {
             res.json(item);

@@ -3,8 +3,8 @@ $(document).ready(() => {
     $("#item-submit").on("click", () => {
         const addItem = {
             productName: $("#product-name").val().trim(),
-            currentQuantity: Number($("#current-quantity").val().trim()),
-            weeklyQuantity: Number($("#weekly-quantity").val().trim())
+            currentQuantity: parseInt($("#current-quantity").val().trim()),
+            weeklyQuantity: parseInt($("#weekly-quantity").val().trim())
         };
 
         $.ajax({
