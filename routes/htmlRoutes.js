@@ -7,8 +7,6 @@ module.exports = (app) => {
 
     app.get("/inventory", (req, res) => {
         db.Inventory.findAll().then((items) => {
-            console.log(typeof items);
-            console.log(items);
             res.render("inventory", {
                 inventory: items,
                 scripts: [{
@@ -25,7 +23,7 @@ module.exports = (app) => {
     });
 
     app.get("/inventory/:id", (req, res) => {
-        db.Example.findOne({
+        db.Inventory.findOne({
             where: {
                 id: req.params.id
             }
