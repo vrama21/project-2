@@ -10,15 +10,18 @@
             <th scope="col">Product Name</th>
             <th scope="col">Current Quantity</th>
             <th scope="col">Quantity Needed For The Week</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
         </tr>
     </thead>
     <tbody class="text-center">
         {{#each inventory}}
         <tr>
-            <th scope="row">{{id}}</th>
+            <td scope="row">{{id}}</th>
             <td>{{productName}}</td>
             <td>{{currentQuantity}}</td>
             <td>{{weeklyQuantity}}</td>
+            <td class="edit-button btn material-icons">edit</td>
             <td>
                 <button class="delete-item btn btn-danger" data-id={{id}} data-toggle="modal" data-target="#delete-item-modal">X</button>
             </td>

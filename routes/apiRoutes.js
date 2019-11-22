@@ -2,12 +2,12 @@ const db = require("../models");
 
 module.exports = (app) => {
     app.post("api/inventory", (req, res) => {
-        db.Inventory.create(req.body).then(item => {
-            res.json(item);
+        db.Inventory.create(req.body).then(inventory_item => {
+            res.json(inventory_item);
         });
     });
 
-    app.put("/api/inventory", (req, res) => {
+    app.put("/api/inventory/", (req, res) => {
         db.Inventory.update(
             req.body, {
                 where: {
@@ -19,7 +19,6 @@ module.exports = (app) => {
     });
 
     app.delete("/api/inventory/:id", (req, res) => {
-        console.log(req.params.id)
         db.Inventory.destroy({
             where: {
                 id: req.params.id

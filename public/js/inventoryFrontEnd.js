@@ -29,4 +29,21 @@ $(document).ready(() => {
         });
     });
 
+    $(".edit-button").on("click", function() {
+        $.ajax({
+            method: "PUT",
+            url: "/api/inventory",
+        }).then(() => {
+            location.reload(true);
+        })
+    });
+
+    // TODO: Add active class to currently selected page in navigation
+    // $(".nav-link").on("click", function(event) {
+    //     // event.preventDefault();
+    //     window.location.replace($(this).attr("href"));
+    //     $(".navbar-nav").children("li").attr("class", "nav-item");
+    //     $(this).parent("li").attr("class", "nav-item active")
+    // });
+
 });
