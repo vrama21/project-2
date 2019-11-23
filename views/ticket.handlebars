@@ -2,7 +2,7 @@
     {{!-- buttons --}}
     <div class="col-md-8">
         {{#each inventory}}
-        <button>{{productName}}</button>
+        <button id="ticketOrder">{{productName}}<hr>Left: {{currentQuantity}}</button>
 
         {{/each}}
 
