@@ -36,10 +36,6 @@ $(document).ready(() => {
             ticketTableBody.append(tableRow);
         });
     });
-
-
-
-
 });
 
 $(document).on("click", ".reduce-button", function () {
@@ -47,7 +43,7 @@ $(document).on("click", ".reduce-button", function () {
     let quantity = $(quantityCell).text();
     if (quantity > 1) {
         quantity--;
-        $(quantityCell).text(quantity)
+        $(quantityCell).text(quantity);
     };
 });
 
@@ -55,5 +51,12 @@ $(document).on("click", ".add-button", function () {
     const quantityCell = $(this).parent().parent().children()[1];
     let quantity = $(quantityCell).text();
     quantity++;
-    $(quantityCell).text(quantity)
+    $(quantityCell).text(quantity);
+});
+
+$(document).on("click", ".delete-item", function () {
+    const deleteTableRow = $(this).parent();
+    $("#delete-item-confirm").on("click", function(){
+        deleteTableRow.remove();
+    });
 });
