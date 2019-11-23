@@ -1,21 +1,24 @@
 <div class="row">
-    {{!-- buttons --}}
     <div class="col-md-8">
         {{#each inventory}}
-        <button>{{productName}}</button>
+        <button class="ticket-item">{{productName}}</button>
 
         {{/each}}
 
     </div>
-    {{!-- order table  --}}
+
     <div class="col-md-4">
-        <h2>Table Order:</h2>
-        <hr>
-        <ul>
-            <li>
-                {{order}}
-            </li>
-        </ul>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
 
 </div>

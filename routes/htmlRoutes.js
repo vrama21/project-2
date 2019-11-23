@@ -6,7 +6,7 @@ module.exports = (app) => {
     })
 
     app.get("/inventory", (req, res) => {
-        db.Inventory.findAll().then((items) => {
+        db.Inventory.findAll().then(items => {
             res.render("inventory", {
                 inventory: items,
                 scripts: [{
@@ -19,8 +19,11 @@ module.exports = (app) => {
     app.get("/ticket", (req, res) => {
         db.Inventory.findAll().then(items => {
             res.render("ticket", {
-                inventory: items
-            })
+                inventory: items,
+                scripts: [{
+                    script: "/js/ticketFrontEnd.js"
+                }]
+            });
         });
     });
 
