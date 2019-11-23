@@ -16,7 +16,7 @@ $(document).ready(() => {
             }).text("remove"));
 
             const addQuantity = $("<td>").append($("<button>").attr({
-                "class": "add-button btn material-icons",
+                "class": "add-button btn material-icons",    
             }).text("add"));
 
             const deleteButton = $("<td>").attr({
@@ -58,5 +58,5 @@ $(document).on("click", ".delete-item", function () {
     const deleteTableRow = $(this).parent();
     $("#delete-item-confirm").on("click", function(){
         deleteTableRow.remove();
-    });
-});
+    };
+                                 
