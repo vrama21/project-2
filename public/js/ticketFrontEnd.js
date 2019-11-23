@@ -19,14 +19,14 @@ $(document).ready(() => {
                 "class": "add-button btn material-icons",
             }).text("add"));
 
-            const deleteButton = $("<td>").attr({
+            const deleteButton = $("<td>").append($("<button>").attr({
                 "class": "delete-item btn btn-danger",
                 "data-id": item.itemId,
                 "data-toggle": "modal",
                 "data-target": "#delete-item-modal",
-            }).text("X");
+            }).text("X"));
 
-            let itemQuantity = $("<td>").text(3);
+            let itemQuantity = $("<td>").text(1);
             let productName = $("<td>").text(inventory_item.productName);
             let productPrice = $("<td>").text("10.00");
 
@@ -36,10 +36,6 @@ $(document).ready(() => {
             ticketTableBody.append(tableRow);
         });
     });
-
-
-
-
 });
 
 $(document).on("click", ".reduce-button", function () {
@@ -47,7 +43,7 @@ $(document).on("click", ".reduce-button", function () {
     let quantity = $(quantityCell).text();
     if (quantity > 1) {
         quantity--;
-        $(quantityCell).text(quantity)
+        $(quantityCell).text(quantity);
     };
 });
 
@@ -55,5 +51,10 @@ $(document).on("click", ".add-button", function () {
     const quantityCell = $(this).parent().parent().children()[1];
     let quantity = $(quantityCell).text();
     quantity++;
-    $(quantityCell).text(quantity)
+    $(quantityCell).text(quantity);
+});
+
+$(document).on("change", "ticket-table", function() {
+    const ticketTablePrice = $("#ticket-table-body").children().children()[4];
+    console.log(ticketTablePrice);
 });
