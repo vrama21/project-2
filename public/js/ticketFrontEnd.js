@@ -58,5 +58,5 @@ $(document).on("click", ".delete-item", function () {
     const deleteTableRow = $(this).parent();
     $("#delete-item-confirm").on("click", function(){
         deleteTableRow.remove();
-    };
-                                 
+    });
+});
