@@ -12,7 +12,7 @@ $(document).ready(() => {
             url: `api/inventory/${item.itemId}`
         }).then(inventory_item => {
             const reduceQuantity = $("<td>").append($("<button>").attr({
-                "class": "edit-button btn material-icons",
+                "class": "reduce-button btn material-icons",
             }).text("remove"));
 
             const addQuantity = $("<td>").append($("<button>").attr({
@@ -26,7 +26,7 @@ $(document).ready(() => {
                 "data-target": "#delete-item-modal",
             }).text("X");
 
-            let itemQuantity = $("<td>").text(1);
+            let itemQuantity = $("<td>").text(3);
             let productName = $("<td>").text(inventory_item.productName);
             let productPrice = $("<td>").text("10.00");
 
@@ -38,18 +38,25 @@ $(document).ready(() => {
     });
 });
 
+$(document).on("click", ".reduce-button", function () {
+    const quantityCell = $(this).parent().parent().children()[1];
+    let quantity = $(quantityCell).text();
+    if (quantity > 1) {
+        quantity--;
+        $(quantityCell).text(quantity);
+    };
+});
+
+$(document).on("click", ".add-button", function () {
+    const quantityCell = $(this).parent().parent().children()[1];
+    let quantity = $(quantityCell).text();
+    quantity++;
+    $(quantityCell).text(quantity);
+});
+
 $(document).on("click", ".delete-item", function () {
     const deleteTableRow = $(this).parent();
     $("#delete-item-confirm").on("click", function(){
-
         deleteTableRow.remove();
-    })
-});
-
-$(document).on("click", ".add-button", function(){
-    const quantityCell = $(this).parent().parent().children()[1];
-    let quantity = quanityCell.text();
-    quantity++;
-    $(quantityCell).text(quantity)
-    
-})
+    };
+                                 
