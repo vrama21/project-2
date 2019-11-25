@@ -1,6 +1,7 @@
 $(document).ready(() => {
 
-    $("#item-submit").on("click", () => {
+    // Add Item
+    $("#add-item").on("click", () => {
         const addItem = {
             productName: $("#product-name").val().trim(),
             currentQuantity: parseInt($("#current-quantity").val().trim()),
@@ -17,8 +18,9 @@ $(document).ready(() => {
         });
     });
 
+    // Delete Item
     $(".delete-item").on("click", function () {
-        const itemId = $(this).attr("data-id");
+        const itemId = $(this).parent().parent().attr("data-id");
         $("#delete-item-confirm").on("click", function () {
             $.ajax({
                 method: "DELETE",
@@ -29,13 +31,14 @@ $(document).ready(() => {
         });
     });
 
+    // Edit Item
     $(".edit-button").on("click", function () {
         const updateObject = {
-            itemId: $(this).attr("data-id"),
+            itemId: $(this).parent().attr("data-id"),
             productNameInput: $("#product-name-update"),
             currentQuantityInput: $("#current-quantity-update"),
             weeklyQuantityInput: $("#weekly-quantity-update"),
-            imageURLInput: $("#image-URL")
+            imageURLInput: $("#image-URL-update")
         };
 
         $.ajax({
@@ -54,7 +57,7 @@ $(document).ready(() => {
                     productName: $("#product-name-update").val().trim(),
                     currentQuantity: parseInt($("#current-quantity-update").val().trim()),
                     weeklyQuantity: parseInt($("#weekly-quantity-update").val().trim()),
-                    imageURL: $("#image-URL").val().trim()
+                    imageURL: $("#image-URL-update").val().trim()
                 };
 
                 $.ajax({

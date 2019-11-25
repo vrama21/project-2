@@ -6,7 +6,6 @@
 <table class="table table-hover">
     <thead class="text-center">
         <tr>
-            <th scope="col">ID</th>
             <th scope="col">Product Name</th>
             <th scope="col">Current Quantity</th>
             <th scope="col">Quantity Needed For The Week</th>
@@ -17,16 +16,15 @@
     </thead>
     <tbody class="text-center">
         {{#each inventory}}
-        <tr>
-            <td scope="row">{{id}}</th>
+        <tr data-id={{id}}>
             <td>{{productName}}</td>
             <td>{{currentQuantity}}</td>
             <td>{{weeklyQuantity}}</td>
             <td><img class = "food-icon-inventory" src="{{imageURL}}"></td>
-            <td class="edit-button btn material-icons" data-id={{id}} data-toggle="modal"
+            <td class="edit-button btn material-icons" data-toggle="modal"
                 data-target="#edit-item-modal">edit</td>
             <td>
-                <button class="delete-item btn btn-danger" data-id={{id}} data-toggle="modal"
+                <button class="delete-item btn btn-danger" data-toggle="modal"
                     data-target="#delete-item-modal">X</button>
             </td>
         </tr>
@@ -51,17 +49,17 @@
                     </div>
                     <div class="form-group">
                         <label for="current-quantity">Current Quantity</label>
-                        <input type="text" class="form-control" id="current-quantity" placeholder="3">
+                        <input type="text" class="form-control" id="current-quantity">
                     </div>
                     <div class="form-group">
                         <label for="weekly-quantity">Weekly Quantity</label>
-                        <input type="text" class="form-control" id="weekly-quantity" placeholder="6">
+                        <input type="text" class="form-control" id="weekly-quantity">
                     </div>
                     <div class="form-group">
                         <label for="product-name">Product URL</label>
                         <input type="text" class="form-control" id="image-URL" placeholder="http://www.google.com">
                     </div>
-                    <submit class="btn btn-primary" id="item-submit" data-dismiss="modal">Add Item</submit>
+                    <submit class="btn btn-primary" id="add-item" data-dismiss="modal">Add Item</submit>
                 </form>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6" id="ticket-buttons">
         {{#each inventory}}
         <button class="ticket-item" data-id="{{id}}"><img class = "food-icon-ticket" src="{{imageURL}}"><hr>{{productName}}</button>
 
@@ -13,16 +13,14 @@
                 <table class="table table-striped" id="ticket-table">
                     <thead id="ticket-table-head">
                         <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Quantity</th>
+                            <th scope="col" class="fixed-column"></th>
+                            <th scope="col" class="fixed-column">Qty</th>
                             <th scope="col">Product</th>
                             <th scope="col">Price</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-
+                            <th scope="col" class="fixed-column"></th>
+                            <th scope="col" class="fixed-column"></th>
                         </tr>
                     </thead>
-
                     <tbody id="ticket-table-body">
                     </tbody>
                 </table>

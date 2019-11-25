@@ -1,5 +1,16 @@
 $(document).ready(() => {
 
+    // Blank img if no url is provided
+    const ticketButtons = $("#ticket-buttons").children();
+    for (let i = 0; i < ticketButtons.length; i++) {
+        const imgTag = $(ticketButtons[i]).children()[0];
+        if ($(imgTag).attr("src") === "") {
+            $(imgTag).removeAttr("src");
+            $(imgTag).css("opacity", 0);
+        }
+    };
+
+    // Append item to ticket table
     $(".ticket-item").on("click", function () {
         const ticketTableBody = $("#ticket-table-body");
 
@@ -19,18 +30,18 @@ $(document).ready(() => {
                 "class": "add-button btn material-icons",    
             }).text("add"));
 
-            const deleteButton = $("<td>").attr({
+            const deleteButton = $("<td>").append($("<button>").attr({
                 "class": "delete-item btn btn-danger",
                 "data-id": item.itemId,
                 "data-toggle": "modal",
                 "data-target": "#delete-item-modal",
-            }).text("X");
+            }).text("X"));
 
             let itemQuantity = $("<td>").text(3);
             let productName = $("<td>").text(inventory_item.productName);
             let productPrice = $("<td>").text("10.00");
 
-            let tableRow = $("<tr>");
+            let tableRow = $("<tr>").addClass("ticket-row");
             tableRow.append(reduceQuantity, itemQuantity, productName, productPrice, addQuantity, deleteButton);
 
             ticketTableBody.append(tableRow);
@@ -38,6 +49,7 @@ $(document).ready(() => {
     });
 });
 
+// Decrease Quantity
 $(document).on("click", ".reduce-button", function () {
     const quantityCell = $(this).parent().parent().children()[1];
     let quantity = $(quantityCell).text();
@@ -47,6 +59,7 @@ $(document).on("click", ".reduce-button", function () {
     };
 });
 
+// Increase Quantity
 $(document).on("click", ".add-button", function () {
     const quantityCell = $(this).parent().parent().children()[1];
     let quantity = $(quantityCell).text();
@@ -54,6 +67,7 @@ $(document).on("click", ".add-button", function () {
     $(quantityCell).text(quantity);
 });
 
+// Delete Item
 $(document).on("click", ".delete-item", function () {
     const deleteTableRow = $(this).parent();
     $("#delete-item-confirm").on("click", function(){
