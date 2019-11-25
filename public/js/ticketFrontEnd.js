@@ -37,9 +37,9 @@ $(document).ready(() => {
                 "data-target": "#delete-item-modal",
             }).text("X"));
 
-            let itemQuantity = $("<td>").text(3);
-            let productName = $("<td>").text(inventory_item.productName);
-            let productPrice = $("<td>").text("10.00");
+            let itemQuantity = $("<td>").addClass("ticket-cell").text(1);
+            let productName = $("<td>").addClass("ticket-cell").text(inventory_item.productName);
+            let productPrice = $("<td>").addClass("ticket-cell").text("10.00");
 
             let tableRow = $("<tr>").addClass("ticket-row");
             tableRow.append(reduceQuantity, itemQuantity, productName, productPrice, addQuantity, deleteButton);
@@ -69,7 +69,7 @@ $(document).on("click", ".add-button", function () {
 
 // Delete Item
 $(document).on("click", ".delete-item", function () {
-    const deleteTableRow = $(this).parent();
+    const deleteTableRow = $(this).parent().parent();
     $("#delete-item-confirm").on("click", function(){
         deleteTableRow.remove();
     });

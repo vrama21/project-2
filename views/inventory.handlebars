@@ -9,6 +9,7 @@
             <th scope="col">Product Name</th>
             <th scope="col">Current Quantity</th>
             <th scope="col">Quantity Needed For The Week</th>
+            <th scope="col">Price</th>
             <th scope="col">Image</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
@@ -20,6 +21,7 @@
             <td>{{productName}}</td>
             <td>{{currentQuantity}}</td>
             <td>{{weeklyQuantity}}</td>
+            <td>${{price}}</td>
             <td><img class = "food-icon-inventory" src="{{imageURL}}"></td>
             <td class="edit-button btn material-icons" data-toggle="modal"
                 data-target="#edit-item-modal">edit</td>
@@ -54,6 +56,10 @@
                     <div class="form-group">
                         <label for="weekly-quantity">Weekly Quantity</label>
                         <input type="text" class="form-control" id="weekly-quantity">
+                    </div>
+                    <div class="form-group">
+                        <label for="weekly-quantity">Price</label>
+                        <input type="text" class="form-control" id="price">
                     </div>
                     <div class="form-group">
                         <label for="product-name">Product URL</label>
@@ -103,6 +109,10 @@
                     <div class="form-group">
                         <label for="weekly-quantity">Weekly Quantity</label>
                         <input type="text" class="form-control" id="weekly-quantity-update">
+                    </div>
+                    <div class="form-group">
+                        <label for="weekly-quantity">Price</label>
+                        <input type="text" class="form-control" id="price-update">
                     </div>
                     <div class="form-group">
                         <label for="product-name">Product URL</label>

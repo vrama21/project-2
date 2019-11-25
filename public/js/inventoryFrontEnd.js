@@ -6,6 +6,7 @@ $(document).ready(() => {
             productName: $("#product-name").val().trim(),
             currentQuantity: parseInt($("#current-quantity").val().trim()),
             weeklyQuantity: parseInt($("#weekly-quantity").val().trim()),
+            price: parseFloat($("#price").val().trim()),
             imageURL: $("#image-URL").val().trim()
         };
 
@@ -38,6 +39,7 @@ $(document).ready(() => {
             productNameInput: $("#product-name-update"),
             currentQuantityInput: $("#current-quantity-update"),
             weeklyQuantityInput: $("#weekly-quantity-update"),
+            priceInput: $("#price-update"),
             imageURLInput: $("#image-URL-update")
         };
 
@@ -48,6 +50,7 @@ $(document).ready(() => {
             updateObject.productNameInput.val(inventory_item.productName);
             updateObject.currentQuantityInput.val(inventory_item.currentQuantity);
             updateObject.weeklyQuantityInput.val(inventory_item.weeklyQuantity);
+            updateObject.priceInput.val(inventory_item.price);
             updateObject.imageURLInput.val(inventory_item.imageURL);
 
             $("#item-update").on("click", function (event) {
@@ -57,6 +60,7 @@ $(document).ready(() => {
                     productName: $("#product-name-update").val().trim(),
                     currentQuantity: parseInt($("#current-quantity-update").val().trim()),
                     weeklyQuantity: parseInt($("#weekly-quantity-update").val().trim()),
+                    price: parseFloat($("#price-update").val().trim()),
                     imageURL: $("#image-URL-update").val().trim()
                 };
 

@@ -26,6 +26,12 @@
 
 .ticket-row td {
     padding: 5px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#ticket-table-head tr {
+    text-align: center;
 }
 
 .fixed-column {
