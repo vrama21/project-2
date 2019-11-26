@@ -2,7 +2,6 @@
     <div class="col-md-6">
         {{#each inventory}}
         <button class="ticket-item" data-id="{{id}}">{{productName}}</button>
-
         {{/each}}
 
     </div>
@@ -17,21 +16,29 @@
                     <th scope="col">Price</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
-
                 </tr>
             </thead>
 
             <tbody id="ticket-table-body">
             </tbody>
         </table>
-    </div>
-
-
-</div>
-<footer>
-    {{!-- <div class="container"> --}}
-        <div class="row text-right">
-            <h4 class="col"><span id="total-price">0.00</span></h4>
+        <div class="total-footer text-right">
+            <h4>Total: <span id="total-price">0.00</span></h4>
         </div>
-    {{!-- </div> --}}
-</footer>
+    </div>
+</div>
+
+<div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                Are you sure you want to delete this item?
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="delete-item-confirm" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>

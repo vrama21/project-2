@@ -34,8 +34,15 @@ $(document).ready(() => {
             tableRow.append(reduceQuantity, itemQuantity, productName, productPrice, addQuantity, deleteButton);
 
             ticketTableBody.append(tableRow);
+
+            checkPriceCol();
         });
     });
+
+    const checkPriceCol = function () {
+        const tableBodyRows = $("#ticket-table-body").children();
+        console.log(Object.keys(tableBodyRows));
+    }
 });
 
 $(document).on("click", ".reduce-button", function () {
@@ -54,7 +61,9 @@ $(document).on("click", ".add-button", function () {
     $(quantityCell).text(quantity);
 });
 
-$(document).on("change", "ticket-table", function() {
-    const ticketTablePrice = $("#ticket-table-body").children().children()[4];
-    console.log(ticketTablePrice);
+$(document).on("click", ".delete-item", function () {
+    const deleteTableRow = $(this).parent().parent();
+    $("#delete-item-confirm").on("click", function () {
+        deleteTableRow.remove();
+    });
 });

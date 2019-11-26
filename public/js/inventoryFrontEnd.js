@@ -18,7 +18,7 @@ $(document).ready(() => {
 
     $(".delete-item").on("click", function () {
         const itemId = $(this).attr("data-id");
-        $("#delete-item").on("click", function () {
+        $("#delete-item-confirm").on("click", function () {
             $.ajax({
                 method: "DELETE",
                 url: `/api/inventory/${itemId}`,
