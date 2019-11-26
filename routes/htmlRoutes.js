@@ -7,6 +7,7 @@ module.exports = (app) => {
 
     app.get("/inventory", (req, res) => {
         db.Inventory.findAll().then(items => {
+            console.log(typeof items[0].dataValues.price)
             res.render("inventory", {
                 inventory: items,
                 scripts: [{
@@ -23,32 +24,6 @@ module.exports = (app) => {
                 scripts: [{
                     script: "/js/ticketFrontEnd.js"
                 }]
-            });
-        });
-    });
-
-    app.post("/inventory", (req, res) => {
-        db.Inventory.create(req.body).then(item => {
-            res.json(item);
-        });
-    });
-
-    app.get("/ticket", (req, res) => {
-        db.Inventory.findAll().then(items => {
-            res.render("ticket", {
-                inventory: items
-            })
-        })
-    })
-
-    app.get("/inventory/:id", (req, res) => {
-        db.Inventory.findOne({
-            where: {
-                id: req.params.id
-            }
-        }).then((inventory_item) => {
-            res.render("inventory", {
-                inventory: inventory_item
             });
         });
     });

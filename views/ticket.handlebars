@@ -1,30 +1,36 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6" id="ticket-buttons">
         {{#each inventory}}
-        <button class="ticket-item" data-id="{{id}}">{{productName}}</button>
+        <button class="ticket-item" data-id="{{id}}"><img class="food-icon-ticket" src="{{imageURL}}">
+            <hr>{{productName}}</button>
+
         {{/each}}
 
     </div>
 
     <div class="col-md-6">
-        <table class="table table-striped" id="ticket-table">
-            <thead id="ticket-table-head">
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Qty</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Price</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-
-            <tbody id="ticket-table-body">
-            </tbody>
-        </table>
-        <div class="total-footer text-right">
-            <h4>Total: <span id="total-price">0.00</span></h4>
+        <div class="scrollbar scrollbar-primary">
+            <div class="force-overflow">
+                <table class="table table-striped" id="ticket-table">
+                    <thead id="ticket-table-head">
+                        <tr>
+                            <th scope="col" class="fixed-column"></th>
+                            <th scope="col" class="fixed-column">Qty</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Net Price</th>
+                            <th scope="col" class="fixed-column"></th>
+                            <th scope="col" class="fixed-column"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="ticket-table-body">
+                    </tbody>
+                </table>
+            </div>
         </div>
+    </div>
+    <div class="fixed-bottom">
+        <h4>Total: <span id="total-price"></span></h4>
     </div>
 </div>
 
