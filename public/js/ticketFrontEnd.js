@@ -39,10 +39,11 @@ $(document).ready(() => {
 
             let itemQuantity = $("<td>").addClass("ticket-cell").text(1);
             let productName = $("<td>").addClass("ticket-cell").text(inventory_item.productName);
-            let productPrice = $("<td>").addClass("ticket-cell").text("10.00");
+            let productPrice = $("<td>").addClass("ticket-cell").text(`$${inventory_item.price}`);
+            let netPrice = $("<td>").addClass("ticket-cell").text(`$${inventory_item.price}`);
 
             let tableRow = $("<tr>").addClass("ticket-row");
-            tableRow.append(reduceQuantity, itemQuantity, productName, productPrice, addQuantity, deleteButton);
+            tableRow.append(reduceQuantity, itemQuantity, productName, productPrice, netPrice, addQuantity, deleteButton);
 
             ticketTableBody.append(tableRow);
         });
@@ -52,19 +53,35 @@ $(document).ready(() => {
 // Decrease Quantity
 $(document).on("click", ".reduce-button", function () {
     const quantityCell = $(this).parent().parent().children()[1];
+    const priceCell = $(this).parent().parent().children()[3];
+    const netPriceCell = $(this).parent().parent().children()[4];
+    
     let quantity = $(quantityCell).text();
+    let price = $(priceCell).text().substring(1);
+
     if (quantity > 1) {
         quantity--;
+        netPrice = price * quantity;
+
         $(quantityCell).text(quantity);
+        $(netPriceCell).text(`$${netPrice}`);
     };
 });
 
 // Increase Quantity
 $(document).on("click", ".add-button", function () {
     const quantityCell = $(this).parent().parent().children()[1];
+    const priceCell = $(this).parent().parent().children()[3];
+    const netPriceCell = $(this).parent().parent().children()[4];
+
     let quantity = $(quantityCell).text();
+    let price = $(priceCell).text().substring(1);
+    
     quantity++;
+    netPrice = price * quantity;
+
     $(quantityCell).text(quantity);
+    $(netPriceCell).text(`$${netPrice}`);
 });
 
 // Delete Item

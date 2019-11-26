@@ -20,7 +20,11 @@
     width: 100px;
 }
 
-.edit-button {
+.delete-item {
+    width: 42px;
+}
+
+.edit-item {
     font-size: 20px;
 }
 

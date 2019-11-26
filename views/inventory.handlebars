@@ -22,9 +22,8 @@
             <td>{{currentQuantity}}</td>
             <td>{{weeklyQuantity}}</td>
             <td>${{price}}</td>
-            <td><img class = "food-icon-inventory" src="{{imageURL}}"></td>
-            <td class="edit-button btn material-icons" data-toggle="modal"
-                data-target="#edit-item-modal">edit</td>
+            <td><img class="food-icon-inventory" src="{{imageURL}}"></td>
+            <td class="edit-item btn material-icons" data-toggle="modal" data-target="#edit-item-modal">edit</td>
             <td>
                 <button class="delete-item btn btn-danger" data-toggle="modal"
                     data-target="#delete-item-modal">X</button>
@@ -44,26 +43,28 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="POST">
+                <form class="modal-form" data-validate="parsley">
                     <div class="form-group">
                         <label for="product-name">Product Name</label>
-                        <input type="text" class="form-control" id="product-name" placeholder="Steak">
+                        <input type="text" class="form-control" id="product-name" placeholder="Enter a Product Name"
+                            data-parseley-required="true" data-parsley-pattern="^[a-zA-Z]+$"
+                            data-parsley-trigger="keyup">
                     </div>
                     <div class="form-group">
                         <label for="current-quantity">Current Quantity</label>
-                        <input type="text" class="form-control" id="current-quantity">
+                        <input type="number" class="form-control" id="current-quantity" data-parsley-type="integer">
                     </div>
                     <div class="form-group">
                         <label for="weekly-quantity">Weekly Quantity</label>
-                        <input type="text" class="form-control" id="weekly-quantity">
+                        <input type="number" class="form-control" id="weekly-quantity" data-parsley-type="integer">
                     </div>
                     <div class="form-group">
                         <label for="weekly-quantity">Price</label>
-                        <input type="text" class="form-control" id="price">
+                        <input type="text" class="form-control" id="price" data-parsley-type="digits">
                     </div>
                     <div class="form-group">
                         <label for="product-name">Product URL</label>
-                        <input type="text" class="form-control" id="image-URL" placeholder="http://www.google.com">
+                        <input type="url" class="form-control" id="image-URL" placeholder="http://www.google.com" data-parsley-type="url">
                     </div>
                     <submit class="btn btn-primary" id="add-item" data-dismiss="modal">Add Item</submit>
                 </form>
@@ -97,7 +98,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form class="modal-form">
                     <div class="form-group">
                         <label for="product-name">Product Name</label>
                         <input type="text" class="form-control" id="product-name-update">

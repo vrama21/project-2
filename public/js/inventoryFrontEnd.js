@@ -1,18 +1,18 @@
 $(document).ready(() => {
 
     // Add Item
-    $("#add-item").on("click", () => {
+    $("#add-item").on("click", (event) => {
         const addItem = {
             productName: $("#product-name").val().trim(),
             currentQuantity: parseInt($("#current-quantity").val().trim()),
             weeklyQuantity: parseInt($("#weekly-quantity").val().trim()),
-            price: parseFloat($("#price").val().trim()),
+            price: parseFloat($("#price").val().trim().toFixed(2)),
             imageURL: $("#image-URL").val().trim()
         };
 
         $.ajax({
             type: "POST",
-            url: "/inventory",
+            url: "api/inventory",
             data: addItem
         }).then(() => {
             location.reload(true);
@@ -33,7 +33,7 @@ $(document).ready(() => {
     });
 
     // Edit Item
-    $(".edit-button").on("click", function () {
+    $(".edit-item").on("click", function () {
         const updateObject = {
             itemId: $(this).parent().attr("data-id"),
             productNameInput: $("#product-name-update"),
@@ -60,16 +60,18 @@ $(document).ready(() => {
                     productName: $("#product-name-update").val().trim(),
                     currentQuantity: parseInt($("#current-quantity-update").val().trim()),
                     weeklyQuantity: parseInt($("#weekly-quantity-update").val().trim()),
-                    price: parseFloat($("#price-update").val().trim()),
+                    price: parseFloat($("#price-update").val().trim()).toFixed(2),
                     imageURL: $("#image-URL-update").val().trim()
                 };
+
+                console.log(updateItem);
 
                 $.ajax({
                     method: "PUT",
                     url: `/api/inventory/${updateObject.itemId}`,
                     data: updateItem
                 }).then(() => {
-                    location.reload(true);
+                    // location.reload(true);
                 });
             });
         });
