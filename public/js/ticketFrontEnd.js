@@ -47,6 +47,8 @@ $(document).ready(() => {
 
             ticketTableBody.append(tableRow);
         });
+        
+        updateTotal();
     });
 });
 
@@ -61,11 +63,13 @@ $(document).on("click", ".reduce-button", function () {
 
     if (quantity > 1) {
         quantity--;
-        netPrice = price * quantity;
+        netPrice = parseFloat(price * quantity).toFixed(2);
 
         $(quantityCell).text(quantity);
         $(netPriceCell).text(`$${netPrice}`);
     };
+
+    updateTotal();
 });
 
 // Increase Quantity
@@ -78,10 +82,12 @@ $(document).on("click", ".add-button", function () {
     let price = $(priceCell).text().substring(1);
     
     quantity++;
-    netPrice = price * quantity;
+    netPrice = parseFloat(price * quantity).toFixed(2);
 
     $(quantityCell).text(quantity);
     $(netPriceCell).text(`$${netPrice}`);
+
+    updateTotal();
 });
 
 // Delete Item
@@ -91,3 +97,14 @@ $(document).on("click", ".delete-item", function () {
         deleteTableRow.remove();
     });
 });
+
+const updateTotal = () => {
+    const tableRows = $("#ticket-table-body").children("tr");
+    
+    let totalPrice = 0;
+    for (let i = 0; i < tableRows.length; i++) {
+        const tableRow = tableRows[i];
+        const netPriceCell = $(tableRow).children()[4];
+        console.log(netPriceCell.text());
+    };
+};

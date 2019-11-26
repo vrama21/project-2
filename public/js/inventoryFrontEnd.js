@@ -6,13 +6,13 @@ $(document).ready(() => {
             productName: $("#product-name").val().trim(),
             currentQuantity: parseInt($("#current-quantity").val().trim()),
             weeklyQuantity: parseInt($("#weekly-quantity").val().trim()),
-            price: parseFloat($("#price").val().trim().toFixed(2)),
+            price: parseFloat($("#price").val().trim()).toFixed(2),
             imageURL: $("#image-URL").val().trim()
         };
 
         $.ajax({
             type: "POST",
-            url: "api/inventory",
+            url: "/api/inventory",
             data: addItem
         }).then(() => {
             location.reload(true);
@@ -25,7 +25,7 @@ $(document).ready(() => {
         $("#delete-item-confirm").on("click", function () {
             $.ajax({
                 method: "DELETE",
-                url: `/api/inventory/${itemId}`,
+                url: `api/inventory/${itemId}`,
             }).then(() => {
                 location.reload(true);
             });
@@ -45,7 +45,7 @@ $(document).ready(() => {
 
         $.ajax({
             method: "GET",
-            url: `api/inventory/${updateObject.itemId}`
+            url: `/api/inventory/${updateObject.itemId}`
         }).then(inventory_item => {
             updateObject.productNameInput.val(inventory_item.productName);
             updateObject.currentQuantityInput.val(inventory_item.currentQuantity);
@@ -64,26 +64,14 @@ $(document).ready(() => {
                     imageURL: $("#image-URL-update").val().trim()
                 };
 
-                console.log(updateItem);
-
                 $.ajax({
                     method: "PUT",
                     url: `/api/inventory/${updateObject.itemId}`,
                     data: updateItem
                 }).then(() => {
-                    // location.reload(true);
+                    location.reload(true);
                 });
             });
         });
-
     });
-
-    // TODO: Add active class to currently selected page in navigation
-    // $(".nav-link").on("click", function(event) {
-    //     // event.preventDefault();
-    //     window.location.replace($(this).attr("href"));
-    //     $(".navbar-nav").children("li").attr("class", "nav-item");
-    //     $(this).parent("li").attr("class", "nav-item active")
-    // });
-
 });

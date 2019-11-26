@@ -1,7 +1,8 @@
 <div class="row">
     <div class="col-md-6" id="ticket-buttons">
         {{#each inventory}}
-        <button class="ticket-item" data-id="{{id}}"><img class = "food-icon-ticket" src="{{imageURL}}"><hr>{{productName}}</button>
+        <button class="ticket-item" data-id="{{id}}"><img class="food-icon-ticket" src="{{imageURL}}">
+            <hr>{{productName}}</button>
 
         {{/each}}
 
@@ -28,18 +29,21 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    Are you sure you want to delete this item?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="delete-item-confirm" class="btn btn-danger"
-                        data-dismiss="modal">Yes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                </div>
+    <div class="fixed-bottom">
+        <h4>Total: <span id="total-price"></span></h4>
+    </div>
+</div>
+
+<div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                Are you sure you want to delete this item?
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="delete-item-confirm" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
