@@ -6,5 +6,15 @@ module.exports = (sequelize, DataTypes) => {
         price: DataTypes.DECIMAL(4, 2),
         imageURL: DataTypes.STRING
     });
+
+    Inventory.associate = function (models) {
+        Inventory.belongsToMany(models.Order, {
+            through: 'InventoryOrders',
+            as: 'orders',
+            foreignKey: 'productId',
+            otherKey: 'orderId'
+        });
+    };
+
     return Inventory;
 };
