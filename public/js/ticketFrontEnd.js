@@ -47,16 +47,9 @@ $(document).ready(() => {
 
             ticketTableBody.append(tableRow);
 
-            checkPriceCol();
+            updateTotal();
         });
-        
-        updateTotal();
     });
-
-    const checkPriceCol = function () {
-        const tableBodyRows = $("#ticket-table-body").children();
-        console.log(Object.keys(tableBodyRows));
-    }
 });
 
 // Decrease Quantity
@@ -108,10 +101,13 @@ $(document).on("click", ".delete-item", function () {
 const updateTotal = () => {
     const tableRows = $("#ticket-table-body").children("tr");
     
-    let totalPrice = 0;
+    let totalPrice = []
     for (let i = 0; i < tableRows.length; i++) {
         const tableRow = tableRows[i];
         const netPriceCell = $(tableRow).children()[4];
-        console.log(netPriceCell.text());
+        totalPrice.push($(netPriceCell).text().substring(1)).toFixed(2);
     };
+    totalPrice.reduce((a, b) => a + b, 0)
+
+    $("#total-price").text(totalPrice);
 };

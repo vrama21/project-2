@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
         productName: DataTypes.STRING,
         currentQuantity: DataTypes.INTEGER,
         weeklyQuantity: DataTypes.INTEGER,
-        price: DataTypes.FLOAT(4, 2),
+        price: DataTypes.DECIMAL(4, 2),
         imageURL: DataTypes.STRING
     });
     return Inventory;
