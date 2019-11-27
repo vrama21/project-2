@@ -57,7 +57,7 @@ $(document).on("click", ".reduce-button", function () {
     const quantityCell = $(this).parent().parent().children()[1];
     const priceCell = $(this).parent().parent().children()[3];
     const netPriceCell = $(this).parent().parent().children()[4];
-    
+
     let quantity = $(quantityCell).text();
     let price = $(priceCell).text().substring(1);
 
@@ -80,7 +80,7 @@ $(document).on("click", ".add-button", function () {
 
     let quantity = $(quantityCell).text();
     let price = $(priceCell).text().substring(1);
-    
+
     quantity++;
     netPrice = parseFloat(price * quantity).toFixed(2);
 
@@ -93,21 +93,21 @@ $(document).on("click", ".add-button", function () {
 // Delete Item
 $(document).on("click", ".delete-item", function () {
     const deleteTableRow = $(this).parent().parent();
-    $("#delete-item-confirm").on("click", function(){
+    $("#delete-item-confirm").on("click", function () {
         deleteTableRow.remove();
     });
 });
 
 const updateTotal = () => {
     const tableRows = $("#ticket-table-body").children("tr");
-    
-    let totalPrice = []
+
+    let totalPriceArray = []
     for (let i = 0; i < tableRows.length; i++) {
         const tableRow = tableRows[i];
         const netPriceCell = $(tableRow).children()[4];
-        totalPrice.push($(netPriceCell).text().substring(1)).toFixed(2);
+        totalPriceArray.push(parseFloat($(netPriceCell).text().substring(1)));
     };
-    totalPrice.reduce((a, b) => a + b, 0)
-
-    $("#total-price").text(totalPrice);
+    const add = (a, b) => a + b;
+    const totalPrice = totalPriceArray.reduce(add);
+    $("#total-price").text(totalPrice.toFixed(2));
 };
