@@ -27,7 +27,7 @@ $(document).ready(() => {
             }).text("remove"));
 
             const addQuantity = $("<td>").append($("<button>").attr({
-                "class": "add-button btn material-icons",    
+                "class": "add-button btn material-icons",
             }).text("add"));
 
             const deleteButton = $("<td>").append($("<button>").attr({
@@ -46,9 +46,9 @@ $(document).ready(() => {
             tableRow.append(reduceQuantity, itemQuantity, productName, productPrice, netPrice, addQuantity, deleteButton);
 
             ticketTableBody.append(tableRow);
+
+            updateTotal();
         });
-        
-        updateTotal();
     });
 });
 
@@ -101,10 +101,13 @@ $(document).on("click", ".delete-item", function () {
 const updateTotal = () => {
     const tableRows = $("#ticket-table-body").children("tr");
     
-    let totalPrice = 0;
+    let totalPrice = []
     for (let i = 0; i < tableRows.length; i++) {
         const tableRow = tableRows[i];
         const netPriceCell = $(tableRow).children()[4];
-        console.log(netPriceCell.text());
+        totalPrice.push($(netPriceCell).text().substring(1)).toFixed(2);
     };
+    totalPrice.reduce((a, b) => a + b, 0)
+
+    $("#total-price").text(totalPrice);
 };

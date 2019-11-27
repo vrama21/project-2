@@ -7,7 +7,6 @@ module.exports = (app) => {
 
     app.get("/inventory", (req, res) => {
         db.Inventory.findAll().then(items => {
-            console.log(typeof items[0].dataValues.price)
             res.render("inventory", {
                 inventory: items,
                 scripts: [{
