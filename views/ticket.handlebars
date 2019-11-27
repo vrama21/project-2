@@ -9,7 +9,7 @@
     </div>
 
     <div class="col-md-6">
-        <div class="scrollbar scrollbar-primary">
+        <div class="scrollbar scrollbar-primary overflow-auto">
             <div class="force-overflow">
                 <table class="table table-striped" id="ticket-table">
                     <thead id="ticket-table-head">
@@ -28,10 +28,12 @@
                 </table>
             </div>
         </div>
+                <div class="text-right" id="total">
+                    <h4>Total: <span id="total-price">$00.00</span></h4>
+                </div>
+                <div class = "btn btn-primary float-right" id="order-button">Submit Order</div>
     </div>
-    <div class="fixed-bottom">
-        <h4>Total: <span id="total-price"></span></h4>
-    </div>
+
 </div>
 
 <div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
