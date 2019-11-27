@@ -7,19 +7,18 @@ module.exports = (app) => {
                 id: req.params.id
             }
         }).then((inventory_item) => {
+            console.log(inventory_item);
             res.json(inventory_item);
         });
     });
 
-    app.post("api/inventory", (req, res) => {
+    app.post("/api/inventory", (req, res) => {
         db.Inventory.create(req.body).then(inventory_item => {
             res.json(inventory_item);
         });
     });
 
     app.put("/api/inventory/:id", (req, res) => {
-        console.log(req.body);
-
         db.Inventory.update(
             req.body, {
                 where: {

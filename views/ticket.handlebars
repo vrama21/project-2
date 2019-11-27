@@ -1,46 +1,51 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6" id="ticket-buttons">
         {{#each inventory}}
-        <button class="ticket-item" data-id="{{id}}">{{productName}}</button>
+        <button class="ticket-item" data-id="{{id}}"><img class="food-icon-ticket" src="{{imageURL}}">
+            <hr>{{productName}}</button>
 
         {{/each}}
 
     </div>
 
     <div class="col-md-6">
-        <div class="scrollbar scrollbar-primary">
+        <div class="scrollbar scrollbar-primary overflow-auto">
             <div class="force-overflow">
                 <table class="table table-striped" id="ticket-table">
                     <thead id="ticket-table-head">
                         <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Quantity</th>
+                            <th scope="col" class="fixed-column"></th>
+                            <th scope="col" class="fixed-column">Qty</th>
                             <th scope="col">Product</th>
                             <th scope="col">Price</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-
+                            <th scope="col">Net Price</th>
+                            <th scope="col" class="fixed-column"></th>
+                            <th scope="col" class="fixed-column"></th>
                         </tr>
                     </thead>
-
                     <tbody id="ticket-table-body">
                     </tbody>
                 </table>
             </div>
         </div>
+                <div class="text-right" id="total">
+                    <h4>Total: <span id="total-price">$00.00</span></h4>
+                </div>
+                <div class = "btn btn-primary float-right" id="order-button">Submit Order</div>
     </div>
-    <div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    Are you sure you want to delete this item?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="delete-item-confirm" class="btn btn-danger"
-                        data-dismiss="modal">Yes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                </div>
+
+</div>
+
+<div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                Are you sure you want to delete this item?
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="delete-item-confirm" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
