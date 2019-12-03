@@ -86,11 +86,11 @@ const appendItem = (ticketTableBody, itemId) => {
         url: `api/inventory/${itemId}`
     }).then(inventory_item => {
         const reduceQuantity = $("<td>").append($("<button>").attr({
-            "class": "reduce-button btn material-icons",
+            "class": "reduce-button btn btn-primary material-icons",
         }).text("remove"));
 
         const addQuantity = $("<td>").append($("<button>").attr({
-            "class": "add-button btn material-icons",
+            "class": "add-button btn btn-primary material-icons",
         }).text("add"));
 
         const deleteButton = $("<td>").append($("<button>").attr({
@@ -122,28 +122,37 @@ const submitOrder = () => {
     let newOrderArray = [];
 
     const tableRows = $("#ticket-table-body").children("tr");
+    // for (let i = 0; i < tableRows.length; i++) {
+    //     const tableRow = tableRows[i];
+    //     const productQuantityCell = $(tableRow).children()[1];
+    //     const productNameCell = $(tableRow).children()[2];
+    //     const priceCell = $(tableRow).children()[3];
+
+    //     const newOrder = {
+    //         productQuantity: $(productQuantityCell).text(),
+    //         productName: $(productNameCell).text(),
+    //         price: $(priceCell).text().substring(1)
+    //     };
+
+    //     newOrderArray.push(newOrder);
+    // };
+
     for (let i = 0; i < tableRows.length; i++) {
         const tableRow = tableRows[i];
-        const productQuantityCell = $(tableRow).children()[1];
-        const productNameCell = $(tableRow).children()[2];
-        const priceCell = $(tableRow).children()[3];
-
-        const newOrder = {
-            productQuantity: $(productQuantityCell).text(),
-            productName: $(productNameCell).text(),
-            price: $(priceCell).text().substring(1)
-        };
-
-        newOrderArray.push(newOrder);
-    };
+    }
 
     $.ajax({
-        method: "POST",
-        url: "/api/order",
-        data: newOrderArray[0]
-    }).then(() => {
-        location.replace("/");
-    });
+        method: "PUT",
+        url: `/api/inventory/${itemId}`
+    })
+
+    // $.ajax({
+    //     method: "POST",
+    //     url: "/api/order",
+    //     data: newOrderArray[0]
+    // }).then(() => {
+    //     location.replace("/");
+    // });
 };
 
 const increaseQuantity = (quantityCell, priceCell, netPriceCell) => {
