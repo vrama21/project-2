@@ -44,8 +44,6 @@ $(document).ready(() => {
             imageURLInput: $("#image-URL-update")
         };
 
-        console.log(updateObject)
-
         $.ajax({
             method: "GET",
             url: `/api/inventory/${updateObject.itemId}`
