@@ -136,7 +136,7 @@ const submitOrder = () => {
 
     // Check if ticket table is empty
     if (tableRows.length === 0) {
-        $("#confirm-submit-modal").modal('show');
+        $("#confirm-submit-modal").modal("show");
     };
 
     let newOrderArray = [];
@@ -184,12 +184,12 @@ const submitOrder = () => {
                             url: `/api/inventory/${orderItemID}`,
                             data: newOrderUpdate
                         }).then(() => {
-                            $("#order-submit-modal").modal('show');
+                            $("#order-submit-modal").modal("show");
                         });
                     } 
                     // Insufficient quantity in inventory to meet the order
                     else {
-
+                        $("#insufficient-qty-modal").modal("show")
                     }
                 };
             };
