@@ -1,9 +1,13 @@
-<div class="row">
-    {{!-- <i id="add-item" type="button" class="btn material-icons" data-toggle="modal" data-target="#add-item-modal">add</i> --}}
+<div class="title-container">
+    <h1>Inventory</h1>
+</div>
+
+<div class="row" id="nav-container">
+    <a type="button" class="btn btn-primary" href="/">Back</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-item-modal">Add Item</button>
 </div>
 
-<table class="table table-hover">
+<table class="table table-hover" id="inventory-table">
     <thead class="text-center" id="inventory-table-head">
         <tr>
             <th scope="col">Product Name</th>
@@ -23,7 +27,9 @@
             <td>{{weeklyQuantity}}</td>
             <td>${{price}}</td>
             <td><img class="food-icon-inventory" src="{{imageURL}}"></td>
-            <td class="edit-item btn material-icons" data-toggle="modal" data-target="#edit-item-modal">edit</td>
+            <td>
+                <button class="edit-item btn material-icons" data-toggle="modal" data-target="#edit-item-modal">edit</button>
+            </td>
             <td>
                 <button class="delete-item btn btn-danger" data-toggle="modal"
                     data-target="#delete-item-modal">X</button>

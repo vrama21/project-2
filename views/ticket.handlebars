@@ -1,14 +1,20 @@
-<div class="row">
-    <div class="col-md-6" id="ticket-buttons">
+<div class="title-container">
+    <h1>New Ticket</h1>
+</div>
+
+<div class="row" id="nav-container">
+    <a type="button" class="btn btn-primary" href="/">Back</a>
+</div>
+
+<div class="row" id="ticket-container">
+    <div class="col-md-7" id="button-container">
         {{#each inventory}}
         <button class="ticket-item" data-id="{{id}}"><img class="food-icon-ticket" src="{{imageURL}}">
             <hr>{{productName}}</button>
-
         {{/each}}
-
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-5" id="ticket-table-container">
         <div class="scrollbar scrollbar-primary overflow-auto">
             <div class="force-overflow">
                 <table class="table table-striped" id="ticket-table">
@@ -28,12 +34,12 @@
                 </table>
             </div>
         </div>
+
         <div class="text-right" id="total">
             <h4>Total: $<span id="total-price">0.00</span></h4>
         </div>
         <div class="btn btn-primary float-right" id="order-submit">Submit Order</div>
     </div>
-
 </div>
 
 <div class="modal fade" id="delete-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -42,6 +48,21 @@
         <div class="modal-content">
             <div class="modal-body">
                 Are you sure you want to delete this item?
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="delete-item-confirm" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirm-submit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                Are you sure you want to confirm the order?
             </div>
             <div class="modal-footer">
                 <button type="button" id="delete-item-confirm" class="btn btn-danger" data-dismiss="modal">Yes</button>

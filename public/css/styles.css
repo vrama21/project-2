@@ -1,115 +1,223 @@
-.list-group-item {
-  line-height: 2.5;
+body {
+    background-image: url(http://localhost:3000/static/img/beige-tiles.png);
 }
 
-.container {
-  height: 75%;
-  width: 90%;
-  margin-top: 30px;
-  margin-left: 200px;
-  display: flex;
-  justify-content: center;
-  background-color: lightblue;
-  border-radius: 10px;
+.title-container {
+    text-align: center;
 }
-#indexContainer {
-  
-  justify-content: space-between;
-  border-radius: 10px;
-  animation: pulse 3s;
+/* =========================================================== */
+/* Index Page */
+/* =========================================================== */
+
+#index-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    animation: pulse 3s;
 }
-@keyframes pulse {
-  0% {
-    background-color: black;
-  }
-  100% {
-    background-color: lightblue;
-  }
+
+#management-button {
+    width: 100%;
+    min-height: 100%;
+    line-height: 500px;
+    position: relative;
 }
-.btn {
-  margin-right: 5px;
+
+#management-button::before {
+    background: url(http://localhost:3000/static/img/chef.jpg);
+    background-size: cover;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.4;
 }
+
+#management-button span {
+    color: black;
+    font-size: 72px;
+    min-width: 100%;
+    min-height: 12em;
+    position: relative;
+}
+
+.management-button span::before {
+    content: "";
+    display: block;
+    position: absolute;
+    margin-left: 0;
+    min-width: 100%;
+    min-height: 12em;
+    z-index: -1;
+    opacity: 0.4;
+    background-color: #343a40;
+}
+
+#staff-button {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    line-height: 500px;
+    position: relative;
+}
+
+#staff-button::before {
+    background: url(http://localhost:3000/static/img/waitress.jpg);
+    background-size: cover;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.4;
+}
+
+#staff-button span {
+    line-height: 500px;
+    text-align: center;
+    font-size: 72px;
+    color: black;
+    z-index: 0;
+}
+/* =========================================================== */
+/* Inventory Page */
+/* =========================================================== */
+
+#nav-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 10px 0;
+    margin: 10px 0 1px 0;
+    /* background-color: white; */
+    /* border: 2px solid black; */
+}
+
 .food-icon-inventory {
-  height: 20px;
-  width: 20px;
+    height: 20px;
+    width: 20px;
 }
 
 .food-icon-ticket {
-  height: 100px;
-  width: 100px;
+    height: 100px;
+    width: 100px;
 }
 
 .delete-item {
-  width: 42px;
+    width: 42px;
 }
 
 .edit-item {
-  font-size: 20px;
-}
-
-.ticket-row td {
-  padding: 5px;
-  vertical-align: middle;
-  text-align: center;
-}
-
-#ticket-table-head tr {
-  text-align: center;
+    font-size: 20px;
 }
 
 .fixed-column {
-  width: 50px;
+    width: 50px;
+}
+
+#inventory-table {
+    border: 3px solid black;
+    background-color: white;
+}
+
+#inventory-table-head th {
+    border: 2px solid black;
+    background-color: lightgray;
+}
+
+#inventory-table-body td {
+    border-top: 0px;
+    border: 2px solid black;
+
+}
+
+/* Ticket Page */
+/* =========================================================== */
+#ticket-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightblue;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+#button-container {
+    flex-wrap: wrap;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#ticket-table-container {
+    background: #fff;
+    /* overflow-y: scroll; */
+    min-height: 700px;
+    border-left: 2px solid black;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+.ticket-row td {
+    padding: 5px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#ticket-table-head tr {
+    text-align: center;
 }
 
 .ticket-item {
-  border-radius: 10px;
-  border: 3px solid black;
-}
-
-#total-price {
-  text-decoration: underline;
-}
-.scrollbar {
-  margin-left: 30px;
-  float: right;
-  height: 600px;
-  width: 500px;
-  background: #fff;
-  overflow-y: scroll;
-  margin-bottom: 25px;
-}
-
-.force-overflow {
-  min-height: 450px;
-}
-
-.scrollbar-primary::-webkit-scrollbar {
-  width: 12px;
-  background-color: #f5f5f5;
-}
-
-.scrollbar-primary::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-  background-color: #4285f4;
+    border-radius: 10px;
+    border: 3px solid black;
 }
 
 #total {
-  margin-right: 20px;
+    position: absolute;
+    bottom: 0;
 }
 
-#order-button {
-  margin-right: 20px;
+#order-submit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+#total-price {
+    text-decoration: underline;
+}
+
+/* =========================================================== */
+
+
+.scrollbar-primary::-webkit-scrollbar {
+    width: 12px;
+    background-color: #f5f5f5;
+}
+
+.scrollbar-primary::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #4285f4;
 }
 
 .inventory-qty-danger {
-  background-color: rgb(207, 0, 0, 60%);
+    background-color: rgb(207, 0, 0, 60%);
 }
 
 .inventory-qty-warning {
-  background-color: rgb(237, 157, 59, 75%);
+    background-color: rgb(237, 157, 59, 75%);
 }
 
 .inventory-qty-caution {
-  background-color: rgb(237, 207, 59, 75%);
+    background-color: rgb(237, 207, 59, 75%);
 }

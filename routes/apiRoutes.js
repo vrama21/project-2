@@ -7,7 +7,6 @@ module.exports = (app) => {
                 id: req.params.id
             }
         }).then((inventory_item) => {
-            console.log(inventory_item);
             res.json(inventory_item);
         });
     });
