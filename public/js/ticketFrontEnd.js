@@ -6,8 +6,8 @@ $(document).ready(() => {
         const ticketTableBody = $("#ticket-table-body");
         const ticketRows = ticketTableBody.children("tr");
         const itemId = $(this).attr("data-id");
-        
-        
+
+
         if (tableIds.includes(itemId)) {
             for (let i = 0; i < ticketRows.length; i++) {
                 const row = ticketRows[i];
@@ -17,7 +17,7 @@ $(document).ready(() => {
                     const priceCell = $(row).children()[3];
                     const netPriceCell = $(row).children()[4];
                     increaseQuantity(quantityCell, priceCell, netPriceCell);
-                }; 
+                };
             };
         } else {
             tableIds.push(itemId);
@@ -29,13 +29,17 @@ $(document).ready(() => {
         submitOrder();
     });
 
-    $("#clear-ticket-confirm").on("click", function() {
+    $("#clear-ticket-confirm").on("click", function () {
         const ticketRows = $("#ticket-table-body").children("tr");
         for (let i = 0; i < ticketRows.length; i++) {
             const ticketRow = ticketRows[i];
             ticketRow.remove();
             window.location.reload("true");
         };
+    });
+
+    $("#order-submit-confirm").on("click", function () {
+        window.location.replace("/")
     });
 });
 
@@ -130,42 +134,67 @@ const appendItem = (ticketTableBody, itemId) => {
 const submitOrder = () => {
     const tableRows = $("#ticket-table-body").children("tr");
 
+    // Check if ticket table is empty
     if (tableRows.length === 0) {
         $("#confirm-submit-modal").modal('show');
     };
+
     let newOrderArray = [];
 
-    // for (let i = 0; i < tableRows.length; i++) {
-    //     const tableRow = tableRows[i];
-    //     const productQuantityCell = $(tableRow).children()[1];
-    //     const productNameCell = $(tableRow).children()[2];
-    //     const priceCell = $(tableRow).children()[3];
+    for (let i = 0; i < tableRows.length; i++) {
+        const tableRow = tableRows[i];
+        const productQuantityCell = $(tableRow).children()[1];
+        const productNameCell = $(tableRow).children()[2];
+        const priceCell = $(tableRow).children()[3];
 
-    //     const newOrder = {
-    //         productQuantity: $(productQuantityCell).text(),
-    //         productName: $(productNameCell).text(),
-    //         price: $(priceCell).text().substring(1)
-    //     };
+        const newOrder = {
+            id: $(tableRow).attr("data-id"),
+            productName: $(productNameCell).text(),
+            productQuantity: $(productQuantityCell).text(),
+            price: $(priceCell).text().substring(1)
+        };
 
-    //     newOrderArray.push(newOrder);
-    // };
+        newOrderArray.push(newOrder);
+    };
 
-    // for (let i = 0; i < tableRows.length; i++) {
-    //     const tableRow = tableRows[i];
-    // }
+    console.log(newOrderArray)
 
-    // $.ajax({
-    //     method: "PUT",
-    //     url: `/api/inventory/${itemId}`
-    // })
+    $.ajax({
+        method: "GET",
+        url: "/api/inventory"
+    }).then(inventory => {
+        console.log(inventory);
 
-    // $.ajax({
-    //     method: "POST",
-    //     url: "/api/order",
-    //     data: newOrderArray[0]
-    // }).then(() => {
-    //     location.replace("/");
-    // });
+        for (let j = 0; j < newOrderArray.length; j++) {
+            const orderItemID = parseInt(newOrderArray[j].id);
+
+            for (let k = 0; k < inventory.length; k++) {
+                const inventoryItemID = inventory[k].id;
+
+                if (orderItemID === inventoryItemID) {
+
+                    // Check if inventory has sufficient quantity to meet order
+                    if (newOrderArray[j].productQuantity <= inventory[k].currentQuantity) {
+                        let newOrderUpdate = {
+                            currentQuantity: inventory[k].currentQuantity - newOrderArray[j].productQuantity,
+                        };
+
+                        $.ajax({
+                            method: "PUT",
+                            url: `/api/inventory/${orderItemID}`,
+                            data: newOrderUpdate
+                        }).then(() => {
+                            $("#order-submit-modal").modal('show');
+                        });
+                    } 
+                    // Insufficient quantity in inventory to meet the order
+                    else {
+
+                    }
+                };
+            };
+        };
+    });
 };
 
 const increaseQuantity = (quantityCell, priceCell, netPriceCell) => {
