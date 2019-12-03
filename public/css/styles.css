@@ -1,9 +1,18 @@
+body {
+    background-image: url(http://localhost:3000/static/img/beige-tiles.png);
+}
+
+.title-container {
+    text-align: center;
+}
+/* =========================================================== */
 /* Index Page */
 /* =========================================================== */
 
 #index-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-radius: 10px;
     animation: pulse 3s;
 }
@@ -78,12 +87,17 @@
     color: black;
     z-index: 0;
 }
-
-
+/* =========================================================== */
+/* Inventory Page */
 /* =========================================================== */
 
-.btn {
-    margin-right: 5px;
+#nav-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 10px 0;
+    margin: 10px 0 1px 0;
+    /* background-color: white; */
+    /* border: 2px solid black; */
 }
 
 .food-icon-inventory {
@@ -104,22 +118,29 @@
     font-size: 20px;
 }
 
-
-
 .fixed-column {
     width: 50px;
 }
 
+#inventory-table {
+    border: 3px solid black;
+    background-color: white;
+}
 
+#inventory-table-head th {
+    border: 2px solid black;
+    background-color: lightgray;
+}
 
-#total-price {
-    text-decoration: underline;
+#inventory-table-body td {
+    border-top: 0px;
+    border: 2px solid black;
+
 }
 
 /* Ticket Page */
 /* =========================================================== */
 #ticket-container {
-    margin-top: 30px;
     display: flex;
     justify-content: space-between;
     background-color: lightblue;
@@ -127,14 +148,20 @@
     border-radius: 10px;
 }
 
-#ticket-container #button-container {
+#button-container {
     flex-wrap: wrap;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 #ticket-table-container {
     background: #fff;
     /* overflow-y: scroll; */
     min-height: 700px;
+    border-left: 2px solid black;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
 }
 
 .ticket-row td {
@@ -162,8 +189,12 @@
     bottom: 0;
     right: 0;
     margin-bottom: 5px;
+    margin-right: 5px;
 }
 
+#total-price {
+    text-decoration: underline;
+}
 
 /* =========================================================== */
 
