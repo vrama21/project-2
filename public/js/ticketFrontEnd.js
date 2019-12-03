@@ -119,9 +119,13 @@ const appendItem = (ticketTableBody, itemId) => {
 };
 
 const submitOrder = () => {
+    const tableRows = $("#ticket-table-body").children("tr");
+
+    if (tableRows.length === 0) {
+        $("#confirm-submit-modal").modal('show');
+    };
     let newOrderArray = [];
 
-    const tableRows = $("#ticket-table-body").children("tr");
     // for (let i = 0; i < tableRows.length; i++) {
     //     const tableRow = tableRows[i];
     //     const productQuantityCell = $(tableRow).children()[1];
@@ -137,14 +141,14 @@ const submitOrder = () => {
     //     newOrderArray.push(newOrder);
     // };
 
-    for (let i = 0; i < tableRows.length; i++) {
-        const tableRow = tableRows[i];
-    }
+    // for (let i = 0; i < tableRows.length; i++) {
+    //     const tableRow = tableRows[i];
+    // }
 
-    $.ajax({
-        method: "PUT",
-        url: `/api/inventory/${itemId}`
-    })
+    // $.ajax({
+    //     method: "PUT",
+    //     url: `/api/inventory/${itemId}`
+    // })
 
     // $.ajax({
     //     method: "POST",
@@ -156,8 +160,6 @@ const submitOrder = () => {
 };
 
 const increaseQuantity = (quantityCell, priceCell, netPriceCell) => {
-    
-
     let quantity = $(quantityCell).text();
     let price = $(priceCell).text().substring(1);
 

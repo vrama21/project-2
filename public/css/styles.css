@@ -5,6 +5,7 @@ body {
 .title-container {
     text-align: center;
 }
+
 /* =========================================================== */
 /* Index Page */
 /* =========================================================== */
@@ -87,6 +88,7 @@ body {
     color: black;
     z-index: 0;
 }
+
 /* =========================================================== */
 /* Inventory Page */
 /* =========================================================== */
@@ -161,7 +163,8 @@ body {
     border-left: 2px solid black;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .ticket-row td {
@@ -182,6 +185,7 @@ body {
 #total {
     position: absolute;
     bottom: 0;
+    padding-left: 5px;
 }
 
 #order-submit {
@@ -195,6 +199,7 @@ body {
 #total-price {
     text-decoration: underline;
 }
+
 
 /* =========================================================== */
 
