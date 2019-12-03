@@ -9,10 +9,14 @@
   margin-left: 200px;
   display: flex;
   justify-content: center;
-  background-color: black;
+  background-color: lightblue;
   border-radius: 10px;
 }
 
+.btn {
+
+    margin-right: 5px;
+}
 .food-icon-inventory {
   height: 20px;
   width: 20px;
