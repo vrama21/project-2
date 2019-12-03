@@ -1,11 +1,12 @@
 $(document).ready(() => {
-    $("#ticket-item").on("click", function () {
+
+    $(".ticket-item").on("click", function () {
         const ticketTableBody = $("#ticket-table-body");
         const itemId = $(this).attr("data-id")
 
         $.ajax({
             method: "GET",
-            url: `api/inventory/${item.itemId}`
+            url: `api/inventory/${itemId}`
         }).then(inventory_item => {
             const reduceQuantity = $("<td>").append($("<button>").attr({
                 "class": "reduce-button btn material-icons",
@@ -17,7 +18,7 @@ $(document).ready(() => {
 
             const deleteButton = $("<td>").append($("<button>").attr({
                 "class": "delete-item btn btn-danger",
-                "data-id": item.itemId,
+                "data-id": itemId,
                 "data-toggle": "modal",
                 "data-target": "#delete-item-modal",
             }).text("X"));
