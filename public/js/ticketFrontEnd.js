@@ -86,11 +86,11 @@ const appendItem = (ticketTableBody, itemId) => {
         url: `api/inventory/${itemId}`
     }).then(inventory_item => {
         const reduceQuantity = $("<td>").append($("<button>").attr({
-            "class": "reduce-button btn material-icons",
+            "class": "reduce-button btn btn-primary material-icons",
         }).text("remove"));
 
         const addQuantity = $("<td>").append($("<button>").attr({
-            "class": "add-button btn material-icons",
+            "class": "add-button btn btn-primary material-icons",
         }).text("add"));
 
         const deleteButton = $("<td>").append($("<button>").attr({
