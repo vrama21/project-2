@@ -3,25 +3,15 @@
 }
 
 .container {
-<<<<<<< HEAD
-  height: 600px;
-  width: 1200px;
+  height: 75%;
+  width: 90%;
   margin-top: 30px;
   margin-left: 200px;
   display: flex;
   justify-content: center;
   background-color: lightblue;
   border-radius: 10px;
-=======
-    height: 600px;
-    width: 1200px;
-    margin-top: 30px;
-    margin-left: 200px;
-    display: flex;
-    justify-content: center;
-    background-color: black;
-    border-radius: 10px;
->>>>>>> e24b58e90f6c6a5093c2b3040670d1e8b9c0a746
+
 }
 
 .btn {
