@@ -74,3 +74,15 @@
 #order-button {
     margin-right: 20px;
 }
+
+.inventory-qty-danger {
+    background-color: rgb(207, 0, 0, 60%)
+}
+
+.inventory-qty-warning {
+    background-color: rgb(237, 157, 59, 75%)
+}
+
+.inventory-qty-caution {
+    background-color: rgb(237, 207, 59, 75%)
+}

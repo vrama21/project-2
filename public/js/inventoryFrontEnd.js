@@ -1,4 +1,6 @@
 $(document).ready(() => {
+    backgroundColorizer();
+
     $("#add-item").on("click", (event) => {
         addItem();
     });
@@ -8,7 +10,45 @@ $(document).ready(() => {
     });
 
     $("#edit-item").on("click", (event) => {
-        editItem();
+        const updateObject = {
+            itemId: $(this).parent().attr("data-id"),
+            productNameInput: $("#product-name-update"),
+            currentQuantityInput: $("#current-quantity-update"),
+            weeklyQuantityInput: $("#weekly-quantity-update"),
+            priceInput: $("#price-update"),
+            imageURLInput: $("#image-URL-update")
+        };
+    
+        $.ajax({
+            method: "GET",
+            url: `/api/inventory/${updateObject.itemId}`
+        }).then(inventory_item => {
+            updateObject.productNameInput.val(inventory_item.productName);
+            updateObject.currentQuantityInput.val(inventory_item.currentQuantity);
+            updateObject.weeklyQuantityInput.val(inventory_item.weeklyQuantity);
+            updateObject.priceInput.val(inventory_item.price);
+            updateObject.imageURLInput.val(inventory_item.imageURL);
+    
+            $("#item-update").on("click", function (event) {
+                event.preventDefault();
+    
+                const updateItem = {
+                    productName: $("#product-name-update").val().trim(),
+                    currentQuantity: parseInt($("#current-quantity-update").val().trim()),
+                    weeklyQuantity: parseInt($("#weekly-quantity-update").val().trim()),
+                    price: parseFloat($("#price-update").val().trim()).toFixed(2),
+                    imageURL: $("#image-URL-update").val().trim()
+                };
+    
+                $.ajax({
+                    method: "PUT",
+                    url: `/api/inventory/${updateObject.itemId}`,
+                    data: updateItem
+                }).then(() => {
+                    location.reload(true);
+                });
+            });
+        });
     });
 });
 
@@ -42,7 +82,7 @@ const deleteItem = () => {
     });
 };
 
-const editItem = () => {
+const editItem = function() {
     const updateObject = {
         itemId: $(this).parent().attr("data-id"),
         productNameInput: $("#product-name-update"),
@@ -82,4 +122,19 @@ const editItem = () => {
             });
         });
     });
+};
+
+const backgroundColorizer = () => {
+    const tableRows = $("#inventory-table-body").children("tr");
+    for (let i = 0; i < tableRows.length; i++) {
+        const tableRow = tableRows[i];
+        const currentQuantityCell = $(tableRow).children()[1];
+        const weeklyQuantityCell = $(tableRow).children()[2];
+        
+        if ($(currentQuantityCell).text() === "0") {
+            console.log("test")
+            $(tableRow).addClass("inventory-qty-danger");
+        }
+
+    };
 };

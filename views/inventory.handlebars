@@ -4,7 +4,7 @@
 </div>
 
 <table class="table table-hover">
-    <thead class="text-center">
+    <thead class="text-center" id="inventory-table-head">
         <tr>
             <th scope="col">Product Name</th>
             <th scope="col">Current Quantity</th>
@@ -15,7 +15,7 @@
             <th scope="col">Delete</th>
         </tr>
     </thead>
-    <tbody class="text-center">
+    <tbody class="text-center" id="inventory-table-body">
         {{#each inventory}}
         <tr data-id={{id}}>
             <td>{{productName}}</td>

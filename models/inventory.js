@@ -7,14 +7,14 @@ module.exports = (sequelize, DataTypes) => {
         imageURL: DataTypes.STRING
     });
 
-    Inventory.associate = function (models) {
-        Inventory.belongsToMany(models.Order, {
-            through: 'InventoryOrders',
-            as: 'orders',
-            foreignKey: 'productId',
-            otherKey: 'orderId'
-        });
-    };
+    // Inventory.associate = function (models) {
+    //     Inventory.belongsToMany(models.Order, {
+    //         through: 'InventoryOrders',
+    //         as: 'orders',
+    //         foreignKey: 'productId',
+    //         otherKey: 'orderId'
+    //     });
+    // };
 
     return Inventory;
 };
