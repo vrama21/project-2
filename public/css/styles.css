@@ -1,5 +1,5 @@
 body {
-    background-image: url(http://localhost:3000/static/img/beige-tiles.png);
+    background-image: url(/static/img/beige-tiles.png);
 }
 
 .title-container {
@@ -26,7 +26,7 @@ body {
 }
 
 #management-button::before {
-    background: url(http://localhost:3000/static/img/chef.jpg);
+    background: url(/static/img/chef.jpg);
     background-size: cover;
     content: "";
     display: block;
@@ -68,7 +68,7 @@ body {
 }
 
 #staff-button::before {
-    background: url(http://localhost:3000/static/img/waitress.jpg);
+    background: url(/static/img/waitress.jpg);
     background-size: cover;
     content: "";
     display: block;
@@ -159,7 +159,7 @@ body {
 #ticket-table-container {
     background: #fff;
     /* overflow-y: scroll; */
-    min-height: 500px;
+    min-height: 600px;
     border-left: 2px solid black;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;

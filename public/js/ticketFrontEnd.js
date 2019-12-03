@@ -77,7 +77,9 @@ $(document).on("click", ".delete-item", function () {
     const deleteTableRow = $(this).parent().parent();
     $("#delete-item-confirm").on("click", function () {
         deleteTableRow.remove();
+        updateTotal();
     });
+
 });
 
 // Blank img if no url is provided
@@ -186,7 +188,7 @@ const submitOrder = () => {
                         }).then(() => {
                             $("#order-submit-modal").modal("show");
                         });
-                    } 
+                    }
                     // Insufficient quantity in inventory to meet the order
                     else {
                         $("#insufficient-qty-modal").modal("show")
@@ -213,13 +215,17 @@ const increaseQuantity = (quantityCell, priceCell, netPriceCell) => {
 const updateTotal = () => {
     const tableRows = $("#ticket-table-body").children("tr");
 
-    let totalPriceArray = []
-    for (let i = 0; i < tableRows.length; i++) {
-        const tableRow = tableRows[i];
-        const netPriceCell = $(tableRow).children()[4];
-        totalPriceArray.push(parseFloat($(netPriceCell).text().substring(1)));
+    if (tableRows.length === 0) {
+        window.location.reload("true");
+    } else {
+        let totalPriceArray = []
+        for (let i = 0; i < tableRows.length; i++) {
+            const tableRow = tableRows[i];
+            const netPriceCell = $(tableRow).children()[4];
+            totalPriceArray.push(parseFloat($(netPriceCell).text().substring(1)));
+        };
+        const add = (a, b) => a + b;
+        const totalPrice = totalPriceArray.reduce(add);
+        $("#total-price").text(totalPrice.toFixed(2));
     };
-    const add = (a, b) => a + b;
-    const totalPrice = totalPriceArray.reduce(add);
-    $("#total-price").text(totalPrice.toFixed(2));
 };
