@@ -4,6 +4,7 @@
 
 <div class="row" id="nav-container">
     <a type="button" class="btn btn-primary" href="/">Back</a>
+    <button type="button" class="btn btn-primary" id="clear-ticket" data-toggle="modal" data-target="#clear-ticket-modal">Clear Ticket</button>
 </div>
 
 <div class="row" id="ticket-container">
@@ -56,6 +57,22 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="clear-ticket-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                Are you sure you want to clear the ticket?
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="clear-ticket-confirm" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="modal fade" id="confirm-submit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">

@@ -28,6 +28,15 @@ $(document).ready(() => {
     $("#order-submit").on("click", function () {
         submitOrder();
     });
+
+    $("#clear-ticket-confirm").on("click", function() {
+        const ticketRows = $("#ticket-table-body").children("tr");
+        for (let i = 0; i < ticketRows.length; i++) {
+            const ticketRow = ticketRows[i];
+            ticketRow.remove();
+            window.location.reload("true");
+        };
+    });
 });
 
 // Decrease Quantity
