@@ -1,40 +1,28 @@
 $(document).ready(() => {
+    blankImg();
 
+    var tableIds = []
     $(".ticket-item").on("click", function () {
         const ticketTableBody = $("#ticket-table-body");
-        const itemId = $(this).attr("data-id")
+        const ticketRows = ticketTableBody.children("tr");
+        const itemId = $(this).attr("data-id");
+        
+        
+        if (tableIds.includes(itemId)) {
+            for (let i = 0; i < ticketRows.length; i++) {
+                const row = ticketRows[i];
 
-        $.ajax({
-            method: "GET",
-            url: `api/inventory/${itemId}`
-        }).then(inventory_item => {
-            const reduceQuantity = $("<td>").append($("<button>").attr({
-                "class": "reduce-button btn material-icons",
-            }).text("remove"));
-
-            const addQuantity = $("<td>").append($("<button>").attr({
-                "class": "add-button btn material-icons",
-            }).text("add"));
-
-            const deleteButton = $("<td>").append($("<button>").attr({
-                "class": "delete-item btn btn-danger",
-                "data-id": itemId,
-                "data-toggle": "modal",
-                "data-target": "#delete-item-modal",
-            }).text("X"));
-
-            let itemQuantity = $("<td>").addClass("ticket-cell").text(1);
-            let productName = $("<td>").addClass("ticket-cell").text(inventory_item.productName);
-            let productPrice = $("<td>").addClass("ticket-cell").text(`$${inventory_item.price}`);
-            let netPrice = $("<td>").addClass("ticket-cell").text(`$${inventory_item.price}`);
-
-            let tableRow = $("<tr>").addClass("ticket-row");
-            tableRow.append(reduceQuantity, itemQuantity, productName, productPrice, netPrice, addQuantity, deleteButton);
-
-            ticketTableBody.append(tableRow);
-
-            updateTotal();
-        });
+                if (itemId === $(row).attr("data-id")) {
+                    const quantityCell = $(row).children()[1];
+                    const priceCell = $(row).children()[3];
+                    const netPriceCell = $(row).children()[4];
+                    increaseQuantity(quantityCell, priceCell, netPriceCell);
+                }; 
+            };
+        } else {
+            tableIds.push(itemId);
+            appendItem(ticketTableBody, itemId)
+        };
     });
 
     $("#order-submit").on("click", function () {
@@ -68,16 +56,7 @@ $(document).on("click", ".add-button", function () {
     const priceCell = $(this).parent().parent().children()[3];
     const netPriceCell = $(this).parent().parent().children()[4];
 
-    let quantity = $(quantityCell).text();
-    let price = $(priceCell).text().substring(1);
-
-    quantity++;
-    netPrice = parseFloat(price * quantity).toFixed(2);
-
-    $(quantityCell).text(quantity);
-    $(netPriceCell).text(`$${netPrice}`);
-
-    updateTotal();
+    increaseQuantity(quantityCell, priceCell, netPriceCell);
 });
 
 // Delete Item
@@ -89,25 +68,22 @@ $(document).on("click", ".delete-item", function () {
 });
 
 // Blank img if no url is provided
-const blankImgUrl = () => {
+const blankImg = () => {
     const ticketButtons = $("#ticket-buttons").children();
     for (let i = 0; i < ticketButtons.length; i++) {
         const imgTag = $(ticketButtons[i]).children()[0];
         if ($(imgTag).attr("src") === "") {
             $(imgTag).removeAttr("src");
             $(imgTag).css("opacity", 0);
-        }
+        };
     };
 };
 
 // Append item to ticket table
-const appendItem = () => {
-    const ticketTableBody = $("#ticket-table-body");
-    const itemId = $(this).attr("data-id")
-
+const appendItem = (ticketTableBody, itemId) => {
     $.ajax({
         method: "GET",
-        url: `api/inventory/${item.itemId}`
+        url: `api/inventory/${itemId}`
     }).then(inventory_item => {
         const reduceQuantity = $("<td>").append($("<button>").attr({
             "class": "reduce-button btn material-icons",
@@ -119,7 +95,7 @@ const appendItem = () => {
 
         const deleteButton = $("<td>").append($("<button>").attr({
             "class": "delete-item btn btn-danger",
-            "data-id": item.itemId,
+            "data-id": itemId,
             "data-toggle": "modal",
             "data-target": "#delete-item-modal",
         }).text("X"));
@@ -129,7 +105,11 @@ const appendItem = () => {
         let productPrice = $("<td>").addClass("ticket-cell").text(`$${inventory_item.price}`);
         let netPrice = $("<td>").addClass("ticket-cell").text(`$${inventory_item.price}`);
 
-        let tableRow = $("<tr>").addClass("ticket-row");
+        let tableRow = $("<tr>").attr({
+            "class": "ticket-row",
+            "data-id": itemId
+        });
+
         tableRow.append(reduceQuantity, itemQuantity, productName, productPrice, netPrice, addQuantity, deleteButton);
 
         ticketTableBody.append(tableRow);
@@ -164,6 +144,21 @@ const submitOrder = () => {
     }).then(() => {
         location.replace("/");
     });
+};
+
+const increaseQuantity = (quantityCell, priceCell, netPriceCell) => {
+    
+
+    let quantity = $(quantityCell).text();
+    let price = $(priceCell).text().substring(1);
+
+    quantity++;
+    netPrice = parseFloat(price * quantity).toFixed(2);
+
+    $(quantityCell).text(quantity);
+    $(netPriceCell).text(`$${netPrice}`);
+
+    updateTotal();
 };
 
 const updateTotal = () => {
