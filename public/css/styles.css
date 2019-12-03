@@ -159,7 +159,7 @@ body {
 #ticket-table-container {
     background: #fff;
     /* overflow-y: scroll; */
-    min-height: 500px;
+    min-height: 600px;
     border-left: 2px solid black;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
