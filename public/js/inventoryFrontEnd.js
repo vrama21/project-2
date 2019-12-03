@@ -36,13 +36,15 @@ $(document).ready(() => {
     // Edit Item
     $(".edit-item").on("click", function () {
         const updateObject = {
-            itemId: $(this).parent().attr("data-id"),
+            itemId: $(this).parent().parent().attr("data-id"),
             productNameInput: $("#product-name-update"),
             currentQuantityInput: $("#current-quantity-update"),
             weeklyQuantityInput: $("#weekly-quantity-update"),
             priceInput: $("#price-update"),
             imageURLInput: $("#image-URL-update")
         };
+
+        console.log(updateObject)
 
         $.ajax({
             method: "GET",
@@ -85,8 +87,13 @@ const backgroundColorizer = () => {
         const currentQuantityCell = $(tableRow).children()[1];
         const weeklyQuantityCell = $(tableRow).children()[2];
 
-        if ($(currentQuantityCell).text() === "0") {
+        const currentQuantityCellValue = parseInt($(currentQuantityCell).text());
+        const weeklyQuantityCellValue = parseInt($(weeklyQuantityCell).text());
+
+        if (currentQuantityCellValue === 0) {
             $(tableRow).addClass("inventory-qty-danger");
-        };
+        } else if (weeklyQuantityCellValue - currentQuantityCellValue > 3) {
+            $(tableRow).addClass("inventory-qty-warning");
+        }
     };
 };
