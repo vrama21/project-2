@@ -1,1 +1,1 @@
-# project-2
+This is a traditional point of sale system that can be utilized by restaurants. Two databases control both the back of house inventory and front of house ordering system.  Some features include: low inventory notices, easily add new items with prices and pictures, create a bill which shows the total cost.  
